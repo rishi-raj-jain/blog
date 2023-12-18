@@ -1,0 +1,19 @@
+---
+import { SiteConfig } from "@/config/global";
+---
+
+<nav class="inline-block">
+  <ul class="flex flex-row space-x-4 border-solid border-2">
+    {
+      SiteConfig.navs.map((nav) => {
+        return (
+          <li>
+            <a class="hover:underline underline-offset-2" href={nav.url}>
+              {nav.title}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

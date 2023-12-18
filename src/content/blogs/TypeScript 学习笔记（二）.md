@@ -4,10 +4,8 @@ date: 2020-09-20T14:16:27+08:00
 hidden: false
 draft: false
 tags: ['TypeScript']
-keywords: ['TypeScript']
 slug: 'typescript-note-2'
 description: 'Learning TypeScript'
-hideSummary: true
 ---
 
 ## Literal Types

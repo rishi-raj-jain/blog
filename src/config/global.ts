@@ -8,7 +8,7 @@ export const SiteConfig = {
   navs: [
     { title: 'Home', url: '/' },
     { title: 'Blogs', url: '/blogs' },
-    { title: 'Projects', url: '/project' },
+    { title: 'Projects', url: '/projects' },
     { title: 'About', url: '/about' },
   ],
   socialMedias: [
