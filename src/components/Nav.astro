@@ -1,0 +1,11 @@
+---
+import { SiteConfig } from '@/config/global';
+---
+
+<nav>
+  <ul>
+    {SiteConfig.navs.map(nav => {
+      return <li>{nav.title}</li>
+    })}
+  </ul>
+</nav>
