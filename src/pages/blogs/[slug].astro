@@ -1,29 +1,25 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+
+interface Props {
+  blog: CollectionEntry<"blogs">;
+}
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blogs");
   return blogs.map((blog) => ({
     params: { slug: blog.slug },
+    props: { blog },
   }));
 }
 
-const { slug } = Astro.params;
+const { blog } = Astro.props;
 
-// slug not exist, return 404
-
-const entry = await getEntry("blogs", slug as CollectionEntry<"blogs">["slug"]);
-
-if (!entry) {
-  return Astro.redirect("/404");
-}
-
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await blog.render();
 ---
 
-<Layout title="Welcome to Astro.">
-  <h2>{entry.data.title}</h2>
+<Layout title={`Blogs | ${remarkPluginFrontmatter.title}`}>
   <Content />
 </Layout>
