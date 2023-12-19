@@ -1,7 +1,31 @@
 ---
-import NavComponent from "@/components/Nav";
+import { config } from "@/config/global";
 ---
 
-<nav class="flex space-x-5">
-  <NavComponent client:only="react" />
+<nav id="site-nav" class="flex space-x-5">
+  {
+    config.navs.map((nav) => (
+      <a href={nav.url} class="decoration-wavy underline-offset-8 self-end">
+        {nav.title}
+      </a>
+    ))
+  }
 </nav>
+
+<script>
+  function getNavFromUrl() {
+    const nav = window.location.pathname.split("/")[1];
+    return "/" + nav;
+  }
+
+  (function setActiveClass() {
+    const nav = getNavFromUrl();
+    const navs = document.querySelectorAll("#site-nav a");
+    navs.forEach((n) => {
+      if (n.getAttribute("href") === nav) {
+        n.classList.add("underline");
+      }
+    });
+  })();
+
+</script>

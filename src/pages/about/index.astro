@@ -6,6 +6,6 @@ const about = await getEntry("about", "me");
 const { Content } = await about!.render();
 ---
 
-<Layout title="About Me" client:load>
+<Layout title="About Me">
   <Content />
 </Layout>
