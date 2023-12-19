@@ -1,4 +1,4 @@
-export const SiteConfig = {
+export const config = {
   author: {
     name: 'CaptainOfPhB',
     email: 'captainofphb#gmail.com'

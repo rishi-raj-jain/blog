@@ -1,4 +1,4 @@
-import { SiteConfig } from '@/config/global';
+import { config } from '@/config/global';
 import { z, defineCollection } from 'astro:content';
 
 export const collections = defineCollection({
@@ -12,6 +12,6 @@ export const collections = defineCollection({
     draft: z.boolean().optional(),
     hidden: z.boolean().optional(),
     date: z.date().default(new Date()),
-    author: z.string().default(SiteConfig.author.name),
+    author: z.string().default(config.author.name),
   }
 });
