@@ -1,0 +1,22 @@
+---
+import dayjs from "dayjs";
+import Title from "./Title.astro";
+
+interface Props {
+  tag: string;
+  totalCount: number;
+  lastUpdatedOn: string;
+}
+
+const { tag, totalCount, lastUpdatedOn } = Astro.props;
+---
+
+<div
+  class="group border-2 p-5 duration-300 hover:border-primary cursor-pointer"
+>
+  <Title class="group-hover:text-primary duration-300">{tag}</Title>
+  <div class="text-sm">Total count: {totalCount}</div>
+  <div class="text-sm">
+    Last updated on: {dayjs(lastUpdatedOn).format("YYYY-MM-DD HH:mm:ss")}
+  </div>
+</div>

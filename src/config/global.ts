@@ -8,6 +8,7 @@ export const config = {
   navs: [
     { title: 'Home', url: '/' },
     { title: 'Blogs', url: '/blogs' },
+    { title: 'Tags', url: '/tags' },
     { title: 'Projects', url: '/projects' },
     { title: 'About', url: '/about' },
   ],

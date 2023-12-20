@@ -13,8 +13,8 @@
     "@astrojs/check": "^0.3.2",
     "@astrojs/mdx": "^2.0.1",
     "@astrojs/tailwind": "^5.0.3",
-    "@fontsource/architects-daughter": "^5.0.8",
     "astro": "^4.0.4",
+    "dayjs": "^1.11.10",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3"
   }

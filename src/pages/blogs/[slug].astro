@@ -1,7 +1,7 @@
 ---
-import { type CollectionEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 
 interface Props {
   blog: CollectionEntry<"blogs">;
@@ -20,6 +20,7 @@ const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await blog.render();
 ---
 
-<Layout title={`Blogs | ${remarkPluginFrontmatter.title}`}>
+<Layout title={remarkPluginFrontmatter.title}>
+  <h1 class="text-2xl">{remarkPluginFrontmatter.title}</h1>
   <Content />
 </Layout>

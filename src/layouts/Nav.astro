@@ -5,7 +5,7 @@ import { config } from "@/config/global";
 <nav id="site-nav" class="flex space-x-5">
   {
     config.navs.map((nav) => (
-      <a href={nav.url} class="decoration-wavy underline-offset-8 self-end">
+      <a href={nav.url} class="decoration-primary decoration-wavy underline-offset-8 self-end">
         {nav.title}
       </a>
     ))
@@ -13,12 +13,9 @@ import { config } from "@/config/global";
 </nav>
 
 <script>
-  function getNavFromUrl() {
-    const nav = window.location.pathname.split("/")[1];
-    return "/" + nav;
-  }
+  document.addEventListener("astro:page-load", () => setActiveClass());
 
-  (function setActiveClass() {
+  function setActiveClass() {
     const nav = getNavFromUrl();
     const navs = document.querySelectorAll("#site-nav a");
     navs.forEach((n) => {
@@ -26,6 +23,10 @@ import { config } from "@/config/global";
         n.classList.add("underline");
       }
     });
-  })();
+  }
 
+  function getNavFromUrl() {
+    const nav = window.location.pathname.split("/")[1];
+    return "/" + nav;
+  }
 </script>

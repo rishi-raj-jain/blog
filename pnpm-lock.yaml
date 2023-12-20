@@ -14,12 +14,12 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.0.3
     version: 5.0.3(astro@4.0.4)(tailwindcss@3.3.6)
-  '@fontsource/architects-daughter':
-    specifier: ^5.0.8
-    version: 5.0.8
   astro:
     specifier: ^4.0.4
     version: 4.0.4(typescript@5.3.3)
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   tailwindcss:
     specifier: ^3.3.6
     version: 3.3.6
@@ -625,10 +625,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /@fontsource/architects-daughter@5.0.8:
-    resolution: {integrity: sha512-wgmCP60Diaw82vZTChkuHTGgA5/pC05nQKkI6apiawu37zP4lEeT5D02PVT9NDpqX83sDhLNWsNgN/P0O7lQhg==}
-    dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}
@@ -1453,6 +1449,10 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: false
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: false
 
   /debug@2.6.9:

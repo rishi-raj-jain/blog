@@ -1,10 +1,10 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import getSortedPosts from "@/utils/getSortedBlogs";
+import getSortedBlogs from "@/utils/getSortedBlogs";
 
 const blogs = await getCollection("blogs");
-const sortedBlogs = getSortedPosts(blogs);
+const sortedBlogs = getSortedBlogs(blogs);
 ---
 
 <Layout title="Welcome to Astro.">
