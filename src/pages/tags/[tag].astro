@@ -1,0 +1,36 @@
+---
+import H1 from "@/components/H1.astro";
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import getTaggedBlogs from "@/utils/getTaggedBlogs";
+
+interface Props {
+  blogs: CollectionEntry<"blogs">[];
+}
+
+export const getStaticPaths = (async () => {
+  const blogs = await getCollection("blogs");
+  const taggedBlogs = getTaggedBlogs(blogs);
+  return Object.entries(taggedBlogs).map(([tag, blogs]) => {
+    return {
+      params: { tag },
+      props: { blogs },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { blogs } = Astro.props;
+---
+
+<Layout title={tag}>
+  <H1 transitionName={tag}># {tag}</H1>
+  {
+    blogs.map((blog) => (
+      <a href={`/blogs/${blog.slug}`}>
+        {blog.data.title}
+      </a>
+    ))
+  }
+</Layout>

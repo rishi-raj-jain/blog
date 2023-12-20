@@ -1,11 +1,11 @@
 ---
+import H1 from '@/components/H1.astro';
 import { Code } from "astro:components";
 import Layout from "@/layouts/Layout.astro";
-import Title from '@/components/Title.astro';
 ---
 
 <Layout title="Projects">
-  <Title>Projects</Title>
+  <H1>Projects</H1>
   <p>There are no projects yet.</p>
   <Code code={`const foo = 'bar';`} lang="ts" theme="github-light" />
 </Layout>

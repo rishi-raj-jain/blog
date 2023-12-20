@@ -1,4 +1,5 @@
 ---
+import H2 from "@/components/H2.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import getSortedBlogs from "@/utils/getSortedBlogs";
@@ -12,7 +13,7 @@ const sortedBlogs = getSortedBlogs(blogs);
     sortedBlogs.map((blog) => (
       <div>
         <a href={`/blogs/${blog.slug}`}>
-          <h2>{blog.data.title}</h2>
+          <H2 transitionName={blog.data.title}>{blog.data.title}</H2>
         </a>
         <p>{blog.data.description}</p>
       </div>

@@ -1,6 +1,6 @@
 ---
 import dayjs from "dayjs";
-import Title from "./Title.astro";
+import H2 from "@/components/H2.astro";
 
 interface Props {
   tag: string;
@@ -11,12 +11,25 @@ interface Props {
 const { tag, totalCount, lastUpdatedOn } = Astro.props;
 ---
 
-<div
-  class="group border-2 p-5 duration-300 hover:border-primary cursor-pointer"
->
-  <Title class="group-hover:text-primary duration-300">{tag}</Title>
-  <div class="text-sm">Total count: {totalCount}</div>
-  <div class="text-sm">
-    Last updated on: {dayjs(lastUpdatedOn).format("YYYY-MM-DD HH:mm:ss")}
+<a href={`/tags/${tag}`}>
+  <div
+    class="group border-2 border-zinc-200 p-5 duration-300 hover:border-primary cursor-pointer"
+  >
+    <H2
+      transitionName={tag}
+      class="group-hover:text-primary group-hover:scale-110 origin-top-left duration-300"
+    >
+      # {tag}
+    </H2>
+    <div
+      class="text-xs text-zinc-400 group-hover:scale-110 origin-top-left group-hover:text-black duration-300"
+    >
+      Total count: {totalCount}
+    </div>
+    <div
+      class="text-xs text-zinc-400 group-hover:scale-110 origin-top-left group-hover:text-black duration-300"
+    >
+      Last updated on: {dayjs(lastUpdatedOn).format("YYYY-MM-DD HH:mm:ss")}
+    </div>
   </div>
-</div>
+</a>

@@ -1,39 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
 import TagCard from "@/components/TagCard.astro";
-import getSortedBlogs from "@/utils/getSortedBlogs";
-import { getCollection, type CollectionEntry } from "astro:content";
-
-type TagedBlogs = Record<string, CollectionEntry<"blogs">[]>;
+import getTaggedBlogs from "@/utils/getTaggedBlogs";
 
 const blogs = await getCollection("blogs");
-
-const tags: TagedBlogs = {};
-
-blogs.forEach((blog) => {
-  const blogTags = blog.data.tags as string[];
-  if (!blogTags || !blogTags.length) return;
-  blogTags.forEach((tag) => {
-    if (!tags[tag]) {
-      tags[tag.toLowerCase()] = [];
-    }
-    tags[tag.toLowerCase()].push(blog);
-  });
-});
-
-const sortedTags = Object.entries(tags).reduce<TagedBlogs>(
-  (acc, [tag, blogs]) => {
-    const sortedBlogs = getSortedBlogs(blogs);
-    return { ...acc, [tag]: sortedBlogs };
-  },
-  {}
-);
+const taggedBlogs = getTaggedBlogs(blogs);
 ---
 
 <Layout title="Tags">
   <div class="grid gap-4 grid-cols-2">
     {
-      Object.entries(sortedTags).map(([tag, blogs]) => (
+      Object.entries(taggedBlogs).map(([tag, blogs]) => (
         <TagCard
           tag={tag}
           totalCount={blogs.length}
