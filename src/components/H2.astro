@@ -1,12 +1,16 @@
 ---
 interface Props {
   class?: string;
+  primitive?: boolean;
   transitionName?: string;
 }
 
-const { transitionName, class: className } = Astro.props;
+const { primitive, transitionName, class: className } = Astro.props;
 ---
 
-<h2 transition:name={transitionName} class={`text-2xl mb-4 ${className}`}>
+<h2
+  transition:name={transitionName}
+  class={primitive ? undefined : `text-2xl mb-4 ${className || ""}`}
+>
   <slot />
 </h2>

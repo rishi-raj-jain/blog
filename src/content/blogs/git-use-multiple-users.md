@@ -1,13 +1,10 @@
 ---
-title: "Git Use Multiple Users"
-date: 2022-10-05T14:38:45+08:00
-hidden: false
+title: Git Use Multiple Users
+date: 2022-10-05 14:38:45
 draft: false
 tags: ['git']
-keywords: ['git']
-description: "Use `[includeIf]` to auto toggle different user in git"
 slug: "git-use-multiple-users"
-summary: "Use `[includeIf]` to auto toggle different user in git ..."
+description: "Use includeIf to auto toggle different user in git"
 ---
 
 In some cases, we work between our personal projects and work projects, so we need to use different user across multiple projects. As we all known, git provides a way to set up user individually in the `.git/config` file in the project root dir. But actually, I always forget to set up the user in the new project before I commit my changes. This annoyed me for a long time.

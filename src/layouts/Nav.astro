@@ -5,7 +5,10 @@ import { config } from "@/config/global";
 <nav id="site-nav" class="flex space-x-5">
   {
     config.navs.map((nav) => (
-      <a href={nav.url} class="decoration-primary decoration-wavy underline-offset-8 self-end">
+      <a
+        href={nav.url}
+        class="hover:text-primary duration-300 decoration-primary decoration-wavy underline-offset-8 self-end"
+      >
         {nav.title}
       </a>
     ))

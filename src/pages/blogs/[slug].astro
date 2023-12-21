@@ -22,11 +22,25 @@ const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await blog.render();
 ---
 
+<style is:global>
+  code {
+    background-color: antiquewhite;
+  }
+</style>
+
 <Layout title={remarkPluginFrontmatter.title}>
-  <H2 transitionName={remarkPluginFrontmatter.title}>
+  <H2 transitionName={remarkPluginFrontmatter.slug}>
     {remarkPluginFrontmatter.title}
   </H2>
-  <div transition:animate={fade({ duration: "0.5s" })}>
+  <p
+    class="text-xs text-zinc-400 -mt-4"
+    transition:animate={fade({ duration: "0.5s" })}
+  >
+    <span class="text-zinc-400">Updated at 2023.12.21</span>,
+    <span class="text-zinc-400">1230 words</span>,
+    <span class="text-zinc-400">6 mins read</span>
+  </p>
+  <div transition:animate={fade({ duration: "0.5s" })} class="mt-4">
     <Content />
   </div>
 </Layout>

@@ -8,6 +8,9 @@ export default {
 			colors: {
 				primary: '#005cc5',
 			},
+			textUnderlineOffset: {
+				6: '6px',
+			},
 			fontFamily: {
 				wenkai: ['LXGW WenKai Lite', ...defaultTheme.fontFamily.sans],
 				monaspace: ['Monaspace Neon', ...defaultTheme.fontFamily.sans],

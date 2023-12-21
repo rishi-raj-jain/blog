@@ -1,13 +1,10 @@
 ---
 title: "Enhance Console Method"
-date: 2022-02-22T21:48:52+08:00
-hidden: false
+date: 2022-02-22 21:48:52
 draft: false
 tags: ['share','babel']
-keywords: ['share','babel']
-description: "enhance your console"
 slug: "/enhance-console-method"
-summary: "babel 最开始叫 6to5，顾名思义是 es6 转 es5，后面改名为 babel ..."
+description: "babel 最开始叫 6to5，顾名思义是 es6 转 es5，后面改名为 babel"
 ---
 
 babel 最开始叫 6to5，顾名思义是 es6 转 es5，后面改名为 babel。

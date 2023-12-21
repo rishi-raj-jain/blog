@@ -10,10 +10,11 @@ export default function getTaggedBlogs(blogs: CollectionEntry<"blogs">[]) {
     const blogTags = blog.data.tags as string[];
     if (!blogTags || !blogTags.length) return;
     blogTags.forEach((tag) => {
-      if (!tags[tag]) {
-        tags[tag.toLowerCase()] = [];
+      const tagTolowerCase = tag.toLowerCase();
+      if (!tags[tagTolowerCase]) {
+        tags[tagTolowerCase] = [];
       }
-      tags[tag.toLowerCase()].push(blog);
+      tags[tagTolowerCase].push(blog);
     });
   });
 

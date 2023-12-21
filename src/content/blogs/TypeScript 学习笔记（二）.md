@@ -1,7 +1,6 @@
 ---
 title: "TypeScript 学习笔记（二）"
-date: 2020-09-20T14:16:27+08:00
-hidden: false
+date: 2020-09-20 14:16:27
 draft: false
 tags: ['TypeScript']
 slug: 'typescript-note-2'

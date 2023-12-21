@@ -8,7 +8,7 @@ const blogs = await getCollection("blogs");
 const taggedBlogs = getTaggedBlogs(blogs);
 ---
 
-<Layout title="Tags">
+<Layout title="CaptainOfPhB | Tags">
   <div class="grid gap-4 grid-cols-2">
     {
       Object.entries(taggedBlogs).map(([tag, blogs]) => (
