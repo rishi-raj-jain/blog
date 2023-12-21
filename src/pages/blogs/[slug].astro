@@ -22,14 +22,8 @@ const { blog } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await blog.render();
 ---
 
-<style is:global>
-  code {
-    background-color: antiquewhite;
-  }
-</style>
-
 <Layout title={remarkPluginFrontmatter.title}>
-  <H2 transitionName={remarkPluginFrontmatter.slug}>
+  <H2 class="font-semibold" transitionName={remarkPluginFrontmatter.slug}>
     {remarkPluginFrontmatter.title}
   </H2>
   <p
@@ -40,7 +34,41 @@ const { Content, remarkPluginFrontmatter } = await blog.render();
     <span class="text-zinc-400">1230 words</span>,
     <span class="text-zinc-400">6 mins read</span>
   </p>
-  <div transition:animate={fade({ duration: "0.5s" })} class="mt-4">
+  <div class="blog-content" transition:animate={fade({ duration: "0.5s" })}>
     <Content />
+    <div class="mt-10">
+      {
+        remarkPluginFrontmatter.tags.map((tag: string) => (
+          <a
+            href={`/tags/${tag.toLowerCase()}`}
+            class="text-sm text-zinc-400 mr-2 hover:text-primary duration-300"
+          >
+            # {tag.toLowerCase()}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </Layout>
+
+<style is:global>
+  .blog-content {
+    margin-top: 20px;
+  }
+
+  .blog-content h2 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .blog-content p {
+    margin: 1em 0;
+  }
+
+  .blog-content pre code {
+    /* font-size: 15px; */
+  }
+</style>
