@@ -1,5 +1,5 @@
 ---
-import H2 from "@/components/H2.astro";
+import H1 from "@/components/H1.astro";
 import { fade } from "astro:transitions";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
@@ -23,9 +23,9 @@ const { Content, remarkPluginFrontmatter } = await blog.render();
 ---
 
 <Layout title={remarkPluginFrontmatter.title}>
-  <H2 class="font-semibold" transitionName={remarkPluginFrontmatter.slug}>
+  <H1 class="font-semibold" transitionName={remarkPluginFrontmatter.slug}>
     {remarkPluginFrontmatter.title}
-  </H2>
+  </H1>
   <p
     class="text-xs text-zinc-400 -mt-4"
     transition:animate={fade({ duration: "0.5s" })}
@@ -34,41 +34,74 @@ const { Content, remarkPluginFrontmatter } = await blog.render();
     <span class="text-zinc-400">1230 words</span>,
     <span class="text-zinc-400">6 mins read</span>
   </p>
-  <div class="blog-content" transition:animate={fade({ duration: "0.5s" })}>
+  <div
+    transition:animate={fade({ duration: "0.5s" })}
+    class:list={[
+      "blog-content",
+      "min-w-full mt-4",
+      "prose",
+      "prose-img:mt-4 prose-img:mb-4",
+      "prose-pre:rounded-none prose-pre:font-monaspace",
+      "prose-table:border prose-table:border-collapse prose-table:bg-white",
+      "prose-th:border prose-th:border-zinc-300 prose-th:pt-2",
+      "prose-td:border prose-td:border-zinc-300",
+      "prose-code:before:content-none prose-code:after:content-none prose-code:font-normal",
+      "prose-a:underline prose-a:underline-offset-4	prose-a:text-primary",
+    ]}
+  >
     <Content />
-    <div class="mt-10">
-      {
-        remarkPluginFrontmatter.tags.map((tag: string) => (
-          <a
-            href={`/tags/${tag.toLowerCase()}`}
-            class="text-sm text-zinc-400 mr-2 hover:text-primary duration-300"
-          >
-            # {tag.toLowerCase()}
-          </a>
-        ))
-      }
-    </div>
+  </div>
+  <div class="mt-14">
+    {
+      remarkPluginFrontmatter.tags.map((tag: string) => (
+        <a
+          href={`/tags/${tag.toLowerCase()}`}
+          class="text-sm text-zinc-400 mr-2 hover:text-primary duration-300"
+        >
+          # {tag.toLowerCase()}
+        </a>
+      ))
+    }
   </div>
 </Layout>
 
-<style is:global>
-  .blog-content {
-    margin-top: 20px;
-  }
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const tocHeader = document.querySelector("#table-of-contents");
 
-  .blog-content h2 {
-    font-weight: bold;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
+    // h1 element will take no effect
+    if (tocHeader?.tagName === "H1") {
+      console.error("The heading of TOC should be h2~h6, not h1");
+      return;
+    }
 
-  .blog-content p {
-    margin: 1em 0;
-  }
+    tocHeader?.classList.add("hidden");
 
-  .blog-content pre code {
-    /* font-size: 15px; */
-  }
-</style>
+    const tocBody = document.querySelector("#table-of-contents ~ ul");
+
+    // don't remove this, or it will cause an error
+    if (!tocBody) return;
+
+    tocBody.classList.add("m-0");
+
+    const details = document.createElement("details");
+    details.open = true;
+    details.id = "details-table-of-contents";
+    details.classList.add(
+      "border-2",
+      "open:pb-4",
+      "bg-white",
+      "select-none",
+      "cursor-pointer"
+    );
+
+    const summary = document.createElement("summary");
+    summary.classList.add("p-4");
+    summary.innerHTML = "Table of Content";
+
+    details.appendChild(summary);
+    details.appendChild(tocBody);
+
+    tocHeader?.replaceWith(details);
+  });
+</script>

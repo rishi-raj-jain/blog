@@ -1,53 +1,24 @@
 ---
 import dayjs from "dayjs";
 import { config } from "@/config/global";
+
+const props = { target: "_blank", class: "underline underline-offset-4" };
 ---
 
 <footer class="absolute bottom-0 border-t-2 w-full p-3 text-center">
   <p class="m-0.5 text-zinc-400 text-xs">
-    The site was built by
-    <a
-      target="_blank"
-      class="underline underline-offset-4"
-      href="https://astro.build"
-    >
-      Astro
-    </a>, hosted on
-    <a
-      target="_blank"
-      href="https://vercel.com/"
-      class="underline underline-offset-4"
-    >
-      Vercel
-    </a>.
+    The site is built by <a {...props} href="https://astro.build">Astro</a>,
+    hosted on <a {...props} href="https://vercel.com/">Vercel</a>.
   </p>
   <p class="m-0.5 text-zinc-400 text-xs">
     Thanks for
-    <a
-      target="_blank"
-      href="https://github.com/satnaing/astro-paper"
-      class="underline underline-offset-4"
-    >
-      AstroPaper
-    </a>,
-    <a
-      target="_blank"
-      class="underline underline-offset-4"
-      href="https://github.com/lxgw/LxgwWenKai"
-    >
-      LxgwWenKai
-    </a>
+    <a {...props} href="https://github.com/satnaing/astro-paper">AstroPaper</a>,
+    <a {...props} href="https://github.com/lxgw/LxgwWenKai">LxgwWenKai</a>
      and
-    <a
-      target="_blank"
-      class="underline underline-offset-4"
-      href="https://monaspace.githubnext.com/"
-    >
-      Monaspace
-    </a>.
+    <a {...props} href="https://monaspace.githubnext.com/">Monaspace</a>.
   </p>
   <p class="m-0.5 text-zinc-400 text-xs">
-    Released under the MIT License. Copyright &copy; {dayjs().format("YYYY")}
-    {config.author.name}
+    Released under the MIT License.
+    Copyright &copy; {dayjs().format("YYYY")} {config.author.name}
   </p>
 </footer>

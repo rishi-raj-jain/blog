@@ -1,4 +1,5 @@
 import mdx from "@astrojs/mdx";
+import remarkToc from 'remark-toc';
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from 'astro/config';
 
@@ -10,7 +11,20 @@ export default defineConfig({
         dark: 'github-dark',
         light: 'github-light',
       }
-    }
+    },
+    remarkPlugins: [
+      [
+        remarkToc,
+        {
+          maxDepth: 3,
+          ordered: false,
+          heading: 'Table of Contents',
+        }
+      ]
+    ]
   },
-  integrations: [tailwind(), mdx()]
+  integrations: [
+    tailwind(),
+    mdx(),
+  ],
 });
