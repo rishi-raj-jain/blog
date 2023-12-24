@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Type search term here..."
+    class="w-full bg-transparent p-2 text-lg outline-none border border-light-2"
+  />
+  <p id="tips" class="mt-4 mb-4 text-light-3"></p>
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const tips = document.getElementById("tips");
+    const searchInput = document.getElementById("search-input");
+
+    searchBlogsFromUrl();
+
+    function searchBlogsFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const search = urlParams.get("q");
+      if (search) {
+        searchInput!.setAttribute("value", search);
+        tips!.innerHTML = `Search result for "${search}":`;
+      }
+    }
+
+    searchInput?.addEventListener("input", (e) => {
+      const target = e.target as HTMLInputElement;
+      tips!.innerHTML = target.value
+        ? `Search result for "${target.value}":`
+        : "";
+    });
+
+    function fuzzySearch(keyword: string) {
+      // use DOMPurify to sanitize the input
+      console.log("🚀 -> fuzzySearch -> keyword:", keyword);
+    }
+  });
+</script>
