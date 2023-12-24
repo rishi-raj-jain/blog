@@ -1,9 +1,11 @@
 ---
+import dayjs from "dayjs";
 import H1 from "@/components/H1.astro";
 import { fade } from "astro:transitions";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { type CollectionEntry } from "astro:content";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 
 interface Props {
   blog: CollectionEntry<"blogs">;
@@ -19,20 +21,29 @@ export async function getStaticPaths() {
 
 const { blog } = Astro.props;
 
-const { Content, remarkPluginFrontmatter } = await blog.render();
+const { Content, remarkPluginFrontmatter: frontmatter } = await blog.render();
+const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
 ---
 
-<Layout title={remarkPluginFrontmatter.title}>
-  <H1 class="font-semibold" transitionName={remarkPluginFrontmatter.slug}>
-    {remarkPluginFrontmatter.title}
+<Layout title={title}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Blogs", href: "/blogs" },
+      { label: title, href: `/blogs/${slug}` },
+    ]}
+  />
+  <H1 class="font-semibold" transitionName={slug}>
+    {title}
   </H1>
   <p
-    class="text-xs text-zinc-400 -mt-4"
+    class="text-xs text-light-3"
     transition:animate={fade({ duration: "0.5s" })}
   >
-    <span class="text-zinc-400">Updated at 2023.12.21</span>,
-    <span class="text-zinc-400">1230 words</span>,
-    <span class="text-zinc-400">6 mins read</span>
+    <span>
+      Updated at {dayjs(lastModified).format("YYYY-MM-DD HH:mm:ss")},
+    </span>
+    <span>{words} words</span>,
+    <span>{readingTime}</span>
   </p>
   <div
     transition:animate={fade({ duration: "0.5s" })}
@@ -40,25 +51,35 @@ const { Content, remarkPluginFrontmatter } = await blog.render();
       "blog-content",
       "min-w-full mt-4",
       "prose",
+      "prose-h2:mb-4",
       "prose-img:mt-4 prose-img:mb-4",
-      "prose-pre:rounded-none prose-pre:font-monaspace",
-      "prose-table:border prose-table:border-collapse prose-table:bg-white",
-      "prose-th:border prose-th:border-zinc-300 prose-th:pt-2",
-      "prose-td:border prose-td:border-zinc-300",
+      "prose-blockquote:mt-4 prose-blockquote:mb-4",
+      "prose-td:border prose-td:border-light-3",
+      "prose-th:border prose-th:border-light-3 prose-th:pt-2",
+      "prose-table:mt-4 prose-table:mb-4 prose-table:border prose-table:border-collapse prose-table:bg-white",
+      "prose-a:underline prose-a:underline-offset-4 prose-a:text-primary",
+      "prose-p:before:content-none prose-p:after:content-none prose-p:mt-4 prose-p:mb-4",
       "prose-code:before:content-none prose-code:after:content-none prose-code:font-normal",
-      "prose-a:underline prose-a:underline-offset-4	prose-a:text-primary",
+      "prose-pre:rounded-none prose-pre:font-monaspace prose-pre:p-4 prose-pre:mt-4 prose-pre:mb-4 prose-pre:border prose-pre:border-dark-2",
     ]}
   >
     <Content />
   </div>
-  <div class="mt-14">
+  <div class="mt-12">
     {
-      remarkPluginFrontmatter.tags.map((tag: string) => (
+      tags.map((tag: string) => (
         <a
           href={`/tags/${tag.toLowerCase()}`}
-          class="text-sm text-zinc-400 mr-2 hover:text-primary duration-300"
+          class="group flex text-sm text-zinc-400 mr-2 hover:text-primary duration-300"
         >
-          # {tag.toLowerCase()}
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 fill-zinc-400 group-hover:fill-primary duration-300"
+          >
+            <path d="M7.78428 14L8.2047 10H4V8H8.41491L8.94043 3H10.9514L10.4259 8H14.4149L14.9404 3H16.9514L16.4259 8H20V10H16.2157L15.7953 14H20V16H15.5851L15.0596 21H13.0486L13.5741 16H9.58509L9.05957 21H7.04855L7.57407 16H4V14H7.78428ZM9.7953 14H13.7843L14.2047 10H10.2157L9.7953 14Z" />
+          </svg>
+          {tag.toLowerCase()}
         </a>
       ))
     }

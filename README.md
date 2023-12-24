@@ -9,9 +9,11 @@
   - <https://www.vantajs.com/?effect=net>
   - <https://jparticles.js.org/#/examples/quick-start>
 - dark mode
-- 添加面包屑导航
 - 全局搜索
 - 博客添加置顶功能
 - 回到顶部
 - 全局 css 样式抽离
 - 多端适配
+- 404 page
+- About me page
+- config.ts 究竟有啥用？

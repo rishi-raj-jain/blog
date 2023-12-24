@@ -3,8 +3,9 @@ import H1 from "@/components/H1.astro";
 import H2 from "@/components/H2.astro";
 import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
 import getTaggedBlogs from "@/utils/getTaggedBlogs";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 interface Props {
   blogs: CollectionEntry<"blogs">[];
@@ -26,6 +27,12 @@ const { blogs } = Astro.props;
 ---
 
 <Layout title={tag}>
+  <Breadcrumbs
+    crumbs={[
+      { label: "Tags", href: "/tags" },
+      { label: tag, href: `/tags/${tag}` },
+    ]}
+  />
   <H1 transitionName={tag}># {tag}</H1>
   {
     blogs.map((blog) => (

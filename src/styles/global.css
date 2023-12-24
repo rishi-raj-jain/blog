@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Monaspace Neon";
+  src: url(https://cdn.jsdelivr.net/gh/githubnext/monaspace@v1.000/fonts/webfonts/MonaspaceNeon-Regular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Architects Daughter";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url(https://cdn.jsdelivr.net/fontsource/fonts/architects-daughter@latest/latin-400-normal.woff2) format("woff2"),
+    url(https://cdn.jsdelivr.net/fontsource/fonts/architects-daughter@latest/latin-400-normal.woff) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --primary-color: theme(colors.sky.600);
+  --light-bg: theme(colors.gray.100);
+  --light-1: theme(colors.gray.900);
+  --light-2: theme(colors.gray.700);
+  --light-3: theme(colors.gray.500);
+  --dark-bg: theme(colors.gray.900);
+  --dark-1: theme(colors.gray.100);
+  --dark-2: theme(colors.gray.300);
+  --dark-3: theme(colors.gray.500);
+}
+
+/* code {
+  @apply font-monaspace;
+} */
+
+u {
+  @apply underline-offset-4;
+}
+
+pre {
+  /* @apply p-4 my-2.5 border border-light-3; */
+}
+
+img {
+  /* border: 1px solid #e5e7eb; */
+}
+
+code {
+  /* border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  background-color: #e4e4e7; */
+}
+
+pre > code {
+  /* padding: 0;
+  border-radius: none;
+  background-color: unset; */
+}
