@@ -6,7 +6,6 @@ export const config = {
   title: 'CaptainOfPhB',
   description: '船长的部落格，记录有趣的事，分享技术经验',
   navs: [
-    { title: 'Home', url: '/' },
     { title: 'Blogs', url: '/blogs' },
     { title: 'Tags', url: '/tags' },
     { title: 'Projects', url: '/projects' },

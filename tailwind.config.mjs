@@ -18,6 +18,9 @@ export default {
 				'dark-2': 'var(--dark-2)',
 				'dark-3': 'var(--dark-3)',
 			},
+			textUnderlineOffset: {
+				6: '6px',
+			},
 			fontFamily: {
 				wenkai: ['LXGW WenKai Lite', ...defaultTheme.fontFamily.sans],
 				monaspace: ['Monaspace Neon', ...defaultTheme.fontFamily.sans],

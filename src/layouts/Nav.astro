@@ -2,7 +2,8 @@
 import { config } from "@/config/global";
 ---
 
-<nav id="site-nav" class="flex space-x-5">
+<nav id="site-nav" class="flex gap-4 mt-4 flex-wrap lg:mt-0">
+  <!-- <nav id="site-nav" class="grid grid-cols-5 grid-flow-row gap-4 mt-4 lg:mt-0"> -->
   {
     config.navs.map((nav) => (
       <a
@@ -48,10 +49,65 @@ import { config } from "@/config/global";
 </nav>
 
 <script>
+  // TODO 在这里给 html 标签添加 dark 类
+  // document.addEventListener("astro:after-swap", () => {
+  //   console.log("🚀 -> initTheme -> theme:");
+  //   initTheme();
+  //   addEventListenerForSVG();
+
+  //   function initTheme() {
+  //     const theme = window.localStorage.getItem("theme") as
+  //       | "light"
+  //       | "dark"
+  //       | null;
+  //     if (theme) {
+  //       setTheme(theme);
+  //       return;
+  //     }
+
+  //     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  //       setTheme("dark");
+  //       return;
+  //     }
+
+  //     setTheme("light");
+  //   }
+
+  //   function addEventListenerForSVG() {
+  //     document.querySelectorAll(".theme-icon").forEach((svg) => {
+  //       const icon = svg as SVGElement;
+  //       icon.addEventListener("click", () =>
+  //         setTheme(icon.dataset.theme as "light" | "dark", true)
+  //       );
+  //     });
+  //   }
+
+  //   function setTheme(theme: "light" | "dark", shouldCache?: boolean) {
+  //     const darkIcon = document.getElementById("dark-icon")!;
+  //     console.log("🚀 -> setTheme -> darkIcon:", darkIcon);
+  //     const lightIcon = document.getElementById("light-icon")!;
+  //     console.log("🚀 -> setTheme -> lightIcon:", lightIcon);
+
+  //     if (shouldCache) {
+  //       window.localStorage.setItem("theme", theme);
+  //     }
+
+  //     if (theme === "light") {
+  //       lightIcon.classList.add("hidden");
+  //       darkIcon.classList.remove("hidden");
+  //       document.documentElement.classList.remove("dark");
+  //     } else {
+  //       darkIcon.classList.add("hidden");
+  //       lightIcon.classList.remove("hidden");
+  //       document.documentElement.classList.add("dark");
+  //     }
+  //   }
+  // });
+
+  // TODO 在这里页面加载之后，根据 storage 或者系统主题控制 icon 的显示
   document.addEventListener("astro:page-load", () => {
-    // 可能需要 astro:after-swap 事件
-    initTheme();
     setActiveClass();
+    initTheme();
     addEventListenerForSVG();
 
     function initTheme() {
@@ -83,7 +139,9 @@ import { config } from "@/config/global";
 
     function setTheme(theme: "light" | "dark", shouldCache?: boolean) {
       const darkIcon = document.getElementById("dark-icon")!;
+      console.log("🚀 -> setTheme -> darkIcon:", darkIcon);
       const lightIcon = document.getElementById("light-icon")!;
+      console.log("🚀 -> setTheme -> lightIcon:", lightIcon);
 
       if (shouldCache) {
         window.localStorage.setItem("theme", theme);

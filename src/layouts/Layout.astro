@@ -13,7 +13,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="text-lg">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={config.description} />
@@ -30,7 +30,11 @@ const { title } = Astro.props;
   <body
     class:list={[
       // common
-      "relative my-0 pt-12 pb-40 mx-auto max-w-5xl min-h-screen font-wenkai",
+      "relative my-0 pt-12 pb-32 mx-auto max-w-5xl min-h-screen font-wenkai",
+      // small screen
+      "px-6 ",
+      // large screen
+      "lg:px-0",
       // light mode
       "bg-light-bg text-light-2",
       // dark mode

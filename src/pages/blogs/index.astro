@@ -17,15 +17,15 @@ const sortedBlogs = getSortedBlogs(blogs);
       const month = dayjs(date).format("MMM");
       const year = dayjs(date).format("YYYY");
       return (
-        <div class="flex mb-10 items-start">
+        <div class="flex flex-row mb-10 items-start">
           <div class="flex flex-col justify-center items-center mr-10">
-            <span class="text-5xl font-black">{day}</span>
-            <span class="text-zinc-400 text-xs">
+            <span class="text-5xl">{day}</span>
+            <span class="text-light-3 dark:text-dark-3 text-xs">
               {month} {year}
             </span>
           </div>
-          <div class="w-full">
-            <H2 transitionName={slug} class="max-w-screen-md truncate">
+          <div>
+            <H2 transitionName={slug} class="truncate text-wrap">
               <a
                 href={`/blogs/${slug}`}
                 class="hover:underline underline-offset-6 decoration-dashed hover:text-primary duration-300"
@@ -33,11 +33,11 @@ const sortedBlogs = getSortedBlogs(blogs);
                 {title}
               </a>
             </H2>
-            <p class="text-wrap text-sm text-zinc-500">{description}...</p>
+            <p class="text-wrap text-sm">{description}...</p>
             <p>
               {tags.map((tag: string) => (
                 <a href={`/tags/${tag.toLowerCase()}`}>
-                  <span class="text-xs text-zinc-400 mr-2 hover:text-primary duration-300">
+                  <span class="text-xs mr-2 hover:text-primary duration-300 text-light-3 dark:text-dark-3">
                     # {tag.toLowerCase()}
                   </span>
                 </a>

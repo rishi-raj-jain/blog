@@ -17,3 +17,5 @@
 - 404 page
 - About me page
 - config.ts 究竟有啥用？
+- 博客内容 revision
+- <https://github.com/expressive-code/expressive-code>

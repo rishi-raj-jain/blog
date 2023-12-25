@@ -10,7 +10,7 @@ const { primitive, transitionName, class: className } = Astro.props;
 
 <h1
   transition:name={transitionName}
-  class={primitive ? undefined : `light:text-light-1 text-3xl ${className || ""}`}
+  class={primitive ? undefined : `text-light-1 dark:text-dark-1 text-3xl ${className || ""}`}
 >
   <slot />
 </h1>

@@ -4,7 +4,11 @@ import Logo from "./Logo.astro";
 ---
 
 <header
-  class="flex justify-between mb-10 pb-4 border-b-2 border-dark-2 dark:border-light-2"
+  class:list={[
+    "flex mb-10 pb-4 border-b-2 border-dark-2 dark:border-light-2",
+    "flex-col",
+    "lg:flex-row lg:justify-between",
+  ]}
 >
   <Logo />
   <Nav />

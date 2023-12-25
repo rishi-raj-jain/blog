@@ -24,7 +24,7 @@
   --light-bg: theme(colors.gray.100);
   --light-1: theme(colors.gray.900);
   --light-2: theme(colors.gray.700);
-  --light-3: theme(colors.gray.500);
+  --light-3: theme(colors.gray.400);
   --dark-bg: theme(colors.gray.900);
   --dark-1: theme(colors.gray.100);
   --dark-2: theme(colors.gray.300);
@@ -51,6 +51,7 @@ code {
   /* border-radius: 6px;
   padding: 0.2rem 0.4rem;
   background-color: #e4e4e7; */
+  @apply font-monaspace;
 }
 
 pre > code {
