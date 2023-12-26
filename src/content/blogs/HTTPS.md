@@ -2,6 +2,7 @@
 title: HTTPS 如何实现加密
 date: 2018-06-02T15:35:38+08:00
 draft: false
+pinned: true
 tags: ['HTTPS']
 slug: 'https-encryption'
 description: 'HTTPS = HTTP（Hyper Text Transfer Protocol）+ SSL（Secure Sockets Layer）/ TLS（Transport Layer Security）.'

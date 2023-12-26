@@ -1,7 +1,60 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import H2 from "@/components/H2.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import getSortedBlogs from "@/utils/getSortedBlogs";
+import BlogCard from "@/components/BlogCard.astro";
+
+const blogs = await getCollection("blogs");
+const sortedBlogs = getSortedBlogs(blogs);
+const pinnedBlogs = sortedBlogs.filter((blog) => blog.data.pinned);
 ---
 
 <Layout title="CaptainOfPhB">
-	这是网站的首页
+  <H2 class="flex mt-10 mb-4">
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 mr-2 fill-light-2 dark:fill-dark-1"
+    >
+      <path
+        d="M13.8273 1.69L22.3126 10.1753L20.8984 11.5895L20.1913 10.8824L15.9486 15.125L15.2415 18.6606L13.8273 20.0748L9.58466 15.8321L4.63492 20.7819L3.2207 19.3677L8.17045 14.4179L3.92781 10.1753L5.34202 8.76107L8.87756 8.05396L13.1202 3.81132L12.4131 3.10422L13.8273 1.69ZM14.5344 5.22554L9.86358 9.89637L7.0417 10.4607L13.5418 16.9609L14.1062 14.139L18.7771 9.46818L14.5344 5.22554Z"
+      >
+      </path>
+    </svg>
+     Pined blog
+  </H2>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {pinnedBlogs.map((blog) => <BlogCard blog={blog} />)}
+  </div>
+  <H2 class="flex mt-10 mb-4">
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 mr-2 fill-light-2 dark:fill-dark-1"
+    >
+      <path
+        d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12H4C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.25022 4 6.82447 5.38734 5.38451 7.50024L8 7.5V9.5H2V3.5H4L3.99989 5.99918C5.82434 3.57075 8.72873 2 12 2ZM13 7L12.9998 11.585L16.2426 14.8284L14.8284 16.2426L10.9998 12.413L11 7H13Z"
+      >
+      </path>
+    </svg>
+     Recent blog
+  </H2>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {sortedBlogs.slice(0, 6).map((blog) => <BlogCard blog={blog} />)}
+  </div>
+  <H2 class="flex mt-10 mb-4">
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 mr-2 fill-light-2 dark:fill-dark-1"
+    >
+      <path
+        d="M14 4.4375C15.3462 4.4375 16.4375 3.34619 16.4375 2H17.5625C17.5625 3.34619 18.6538 4.4375 20 4.4375V5.5625C18.6538 5.5625 17.5625 6.65381 17.5625 8H16.4375C16.4375 6.65381 15.3462 5.5625 14 5.5625V4.4375ZM1 11C4.31371 11 7 8.31371 7 5H9C9 8.31371 11.6863 11 15 11V13C11.6863 13 9 15.6863 9 19H7C7 15.6863 4.31371 13 1 13V11ZM4.87601 12C6.18717 12.7276 7.27243 13.8128 8 15.124 8.72757 13.8128 9.81283 12.7276 11.124 12 9.81283 11.2724 8.72757 10.1872 8 8.87601 7.27243 10.1872 6.18717 11.2724 4.87601 12ZM17.25 14C17.25 15.7949 15.7949 17.25 14 17.25V18.75C15.7949 18.75 17.25 20.2051 17.25 22H18.75C18.75 20.2051 20.2051 18.75 22 18.75V17.25C20.2051 17.25 18.75 15.7949 18.75 14H17.25Z"
+      >
+      </path>
+    </svg>
+     Featured project
+  </H2>
+	Nothing here yet
 </Layout>

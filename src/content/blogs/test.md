@@ -2,6 +2,7 @@
 title: Test Markdown
 date: 2023-12-22 10:09:00
 draft: false
+pinned: true
 tags: 
   - markdown
 description: 'Test markdown systax'
