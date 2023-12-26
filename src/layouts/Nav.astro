@@ -29,16 +29,20 @@ import { config } from "@/config/global";
     id="dark-icon"
     data-theme="dark"
     viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg "
+    xmlns="http://www.w3.org/2000/svg"
     class="theme-icon hidden w-5 h-6 self-end cursor-pointer"
   >
     <path
-      d="M12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C17.5228 1.9967 22 6.47386 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967ZM5.32889 16.422C6.76378 18.5675 9.20868 19.9803 11.9836 19.9803C16.4018 19.9803 19.9836 16.3985 19.9836 11.9803C19.9836 9.2053 18.5707 6.76034 16.4251 5.32547C17.2705 8.35324 16.5025 11.7369 14.1213 14.1181C11.7401 16.4993 8.3566 17.2672 5.32889 16.422Z"
+      d="M12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C17.5228 1.9967 22 6.47386 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967ZM12 19.9967C16.4183 19.9967 20 16.415 20 11.9967C20 7.57843 16.4183 3.9967 12 3.9967C7.58172 3.9967 4 7.57843 4 11.9967C4 16.415 7.58172 19.9967 12 19.9967ZM7.00035 15.316C9.07995 15.1646 11.117 14.2939 12.7071 12.7038C14.2972 11.1137 15.1679 9.07666 15.3193 6.99706C15.6454 7.21408 15.955 7.46642 16.2426 7.75406C18.5858 10.0972 18.5858 13.8962 16.2426 16.2393C13.8995 18.5825 10.1005 18.5825 7.75736 16.2393C7.46971 15.9517 7.21738 15.6421 7.00035 15.316Z"
     >
     </path>
   </svg>
   <a href="/search" class="self-end">
-    <svg class="w-5 h-6 dark:fill-dark-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      class="w-5 h-6 dark:fill-dark-2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"
       >
@@ -48,127 +52,89 @@ import { config } from "@/config/global";
 </nav>
 
 <script>
-  // TODO 页面监听 visiblechange 事件，来切换主题
-  // TODO 在这里给 html 标签添加 dark 类
-  // document.addEventListener("astro:after-swap", () => {
-  //   console.log("🚀 -> initTheme -> theme:");
-  //   initTheme();
-  //   addEventListenerForSVG();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") return;
+    const theme = getInitialTheme();
+    setTheme(theme);
+    toggleThemeIcon(theme);
+  });
 
-  //   function initTheme() {
-  //     const theme = window.localStorage.getItem("theme") as
-  //       | "light"
-  //       | "dark"
-  //       | null;
-  //     if (theme) {
-  //       setTheme(theme);
-  //       return;
-  //     }
+  document.addEventListener("astro:after-swap", () => {
+    setTheme(getInitialTheme());
+  });
 
-  //     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  //       setTheme("dark");
-  //       return;
-  //     }
-
-  //     setTheme("light");
-  //   }
-
-  //   function addEventListenerForSVG() {
-  //     document.querySelectorAll(".theme-icon").forEach((svg) => {
-  //       const icon = svg as SVGElement;
-  //       icon.addEventListener("click", () =>
-  //         setTheme(icon.dataset.theme as "light" | "dark", true)
-  //       );
-  //     });
-  //   }
-
-  //   function setTheme(theme: "light" | "dark", shouldCache?: boolean) {
-  //     const darkIcon = document.getElementById("dark-icon")!;
-  //     console.log("🚀 -> setTheme -> darkIcon:", darkIcon);
-  //     const lightIcon = document.getElementById("light-icon")!;
-  //     console.log("🚀 -> setTheme -> lightIcon:", lightIcon);
-
-  //     if (shouldCache) {
-  //       window.localStorage.setItem("theme", theme);
-  //     }
-
-  //     if (theme === "light") {
-  //       lightIcon.classList.add("hidden");
-  //       darkIcon.classList.remove("hidden");
-  //       document.documentElement.classList.remove("dark");
-  //     } else {
-  //       darkIcon.classList.add("hidden");
-  //       lightIcon.classList.remove("hidden");
-  //       document.documentElement.classList.add("dark");
-  //     }
-  //   }
-  // });
-
-  // TODO 在这里页面加载之后，根据 storage 或者系统主题控制 icon 的显示
   document.addEventListener("astro:page-load", () => {
     setActiveClass();
-    initTheme();
-    addEventListenerForSVG();
-
-    function initTheme() {
-      const theme = window.localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
-      if (theme) {
-        setTheme(theme);
-        return;
-      }
-
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        setTheme("dark");
-        return;
-      }
-
-      setTheme("light");
-    }
-
-    function addEventListenerForSVG() {
-      document.querySelectorAll(".theme-icon").forEach((svg) => {
-        const icon = svg as SVGElement;
-        icon.addEventListener("click", () =>
-          setTheme(icon.dataset.theme as "light" | "dark", true)
-        );
-      });
-    }
-
-    function setTheme(theme: "light" | "dark", shouldCache?: boolean) {
-      const darkIcon = document.getElementById("dark-icon")!;
-      const lightIcon = document.getElementById("light-icon")!;
-
-      if (shouldCache) {
-        window.localStorage.setItem("theme", theme);
-      }
-
-      if (theme === "light") {
-        lightIcon.classList.add("hidden");
-        darkIcon.classList.remove("hidden");
-        document.documentElement.classList.remove("dark");
-      } else {
-        darkIcon.classList.add("hidden");
-        lightIcon.classList.remove("hidden");
-        document.documentElement.classList.add("dark");
-      }
-    }
-
-    function setActiveClass() {
-      const nav = getNavFromUrl();
-      const navs = document.querySelectorAll("#site-nav a");
-      navs.forEach((n) => {
-        if (n.getAttribute("href") === nav) {
-          n.classList.add("underline");
-        }
-      });
-    }
-
-    function getNavFromUrl() {
-      const nav = window.location.pathname.split("/")[1];
-      return "/" + nav;
-    }
+    addEventListenerForThemeIcon();
+    toggleThemeIcon(getInitialTheme());
   });
+
+  function getInitialTheme(): "light" | "dark" {
+    const theme = window.localStorage.getItem("theme") as
+      | "light"
+      | "dark"
+      | null;
+    if (theme) {
+      return theme;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  }
+
+  function setTheme(theme: "light" | "dark") {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  function addEventListenerForThemeIcon() {
+    document.querySelectorAll(".theme-icon").forEach((svg) => {
+      const icon = svg as SVGElement;
+      icon.addEventListener("click", () => {
+        const theme = icon.dataset.theme as "light" | "dark";
+        setTheme(theme);
+        toggleThemeIcon(theme, true);
+      });
+    });
+  }
+
+  function toggleThemeIcon(theme: "light" | "dark", shouldCache?: boolean) {
+    const darkIcon = document.getElementById("dark-icon");
+    const lightIcon = document.getElementById("light-icon");
+
+    if (darkIcon === null || lightIcon === null) return;
+
+    if (shouldCache) {
+      window.localStorage.setItem("theme", theme);
+    }
+
+    if (theme === "light") {
+      lightIcon.classList.add("hidden");
+      darkIcon.classList.remove("hidden");
+    } else {
+      darkIcon.classList.add("hidden");
+      lightIcon.classList.remove("hidden");
+    }
+  }
+
+  function setActiveClass() {
+    const nav = getNavFromUrl();
+    const navs = document.querySelectorAll("#site-nav a");
+    navs.forEach((n) => {
+      if (n.getAttribute("href") === nav) {
+        n.classList.add("underline");
+      }
+    });
+  }
+
+  function getNavFromUrl() {
+    const nav = window.location.pathname.split("/")[1];
+    return "/" + nav;
+  }
 </script>
