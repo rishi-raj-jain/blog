@@ -1,0 +1,16 @@
+---
+import { config } from "@/config/global";
+---
+
+<div class="flex space-x-2">
+  {
+    config.socialMedias.map((each, index) => {
+      return (
+        <>
+          {!!index && <span class="">|</span>}
+          <a href={each.url} target="_blank">{each.title}</a>
+        </>
+      );
+    })
+  }
+</div>

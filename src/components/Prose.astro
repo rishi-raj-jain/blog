@@ -4,9 +4,9 @@
     "prose",
     "prose-h2:mb-4",
     "prose-img:mt-4 prose-img:mb-4",
-    "prose-td:border prose-td:border-light-3",
-    "prose-th:border prose-th:border-light-3 prose-th:pt-2",
-    "prose-table:mt-4 prose-table:mb-4 prose-table:border prose-table:border-collapse",
+    "prose-td:border prose-td:border-light-3 prose-td:align-middle",
+    "prose-th:border prose-th:border-light-3 prose-th:pt-2 prose-th:align-middle",
+    "prose-table:mt-4 prose-table:mb-4 prose-table:border prose-table:border-collapse prose-table:table-fixed",
     "prose-blockquote:mt-4 prose-blockquote:mb-4 prose-blockquote:not-italic",
     "prose-a:underline prose-a:underline-offset-4 prose-a:text-primary",
     "prose-p:before:content-none prose-p:after:content-none prose-p:mt-4 prose-p:mb-4",
@@ -16,11 +16,18 @@
     "prose-table:bg-white",
     "prose-blockquote:text-light-3",
     "prose-pre:border-dark-2",
+    "prose-td:border-dark-2",
+    "prose-th:border-dark-2",
+    "prose-table:border-dark-2 prose-table:bg-white",
     // dark mode
     "dark:prose-invert",
     "dark:prose-h2:text-dark-1",
     "dark:prose-code:bg-light-2",
+    "dark:prose-pre:border-light-3",
     "dark:prose-blockquote:text-dark-3",
+    "dark:prose-td:border-light-3",
+    "dark:prose-th:border-light-3",
+    "dark:prose-table:border-light-3 dark:prose-table:bg-[#24292e]", // same with pre bg-color
     // unset pre>code style, should be the last one
     "*:prose-pre:p-0 *:prose-pre:bg-transparent *:dark:prose-pre:bg-transparent",
   ]}
