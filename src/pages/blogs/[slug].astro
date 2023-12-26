@@ -41,7 +41,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     transition:animate={fade({ duration: "0.5s" })}
   >
     <span>
-      Updated at {dayjs(lastModified).format("YYYY-MM-DD HH:mm:ss")},
+      Updated on {dayjs(lastModified).format("YYYY.MM.DD")},
     </span>
     <span>{words} words</span>,
     <span>{readingTime}</span>
