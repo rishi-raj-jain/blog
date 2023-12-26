@@ -1,11 +1,14 @@
 ---
-import Layout from "@/layouts/Layout.astro";
 import { getEntry } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Prose from "@/components/Prose.astro";
 
 const about = await getEntry("about", "me");
 const { Content } = await about!.render();
 ---
 
 <Layout title="CaptainOfPhB | About">
-  <Content />
+  <Prose>
+    <Content />
+  </Prose>
 </Layout>

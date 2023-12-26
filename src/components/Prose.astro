@@ -1,0 +1,40 @@
+<div
+  class:list={[
+    "min-w-full mt-4",
+    "prose",
+    "prose-h2:mb-4",
+    "prose-img:mt-4 prose-img:mb-4",
+    "prose-td:border prose-td:border-light-3",
+    "prose-th:border prose-th:border-light-3 prose-th:pt-2",
+    "prose-table:mt-4 prose-table:mb-4 prose-table:border prose-table:border-collapse",
+    "prose-blockquote:mt-4 prose-blockquote:mb-4 prose-blockquote:not-italic",
+    "prose-a:underline prose-a:underline-offset-4 prose-a:text-primary",
+    "prose-p:before:content-none prose-p:after:content-none prose-p:mt-4 prose-p:mb-4",
+    "prose-code:before:content-none prose-code:after:content-none prose-code:font-normal prose-code:rounded prose-code:rounded-md	prose-code:p-1 prose-code:bg-dark-2",
+    "prose-pre:rounded-none prose-pre:font-monaspace prose-pre:p-4 prose-pre:mt-4 prose-pre:mb-4 prose-pre:border prose-pre:bg-transparent",
+    // light mode
+    "prose-table:bg-white",
+    "prose-blockquote:text-light-3",
+    "prose-pre:border-dark-2",
+    // dark mode
+    "dark:prose-invert",
+    "dark:prose-h2:text-dark-1",
+    "dark:prose-code:bg-light-2",
+    "dark:prose-blockquote:text-dark-3",
+    // unset pre>code style, should be the last one
+    "*:prose-pre:p-0 *:prose-pre:bg-transparent *:dark:prose-pre:bg-transparent",
+  ]}
+>
+  <slot />
+</div>
+
+<style is:global>
+  html.dark pre.github-dark {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+
+  html.dark pre.github-dark span {
+    color: var(--shiki-dark) !important;
+  }
+</style>

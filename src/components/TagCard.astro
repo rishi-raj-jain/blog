@@ -11,35 +11,31 @@ interface Props {
 const { tag, totalCount, lastUpdatedOn } = Astro.props;
 ---
 
-<a href={`/tags/${tag}`}>
-  <div
-    class="group border-2 border-zinc-200 p-5 duration-300 hover:border-primary cursor-pointer"
+<a
+  href={`/tags/${tag}`}
+  data-total={totalCount}
+  class:list={[
+    "group relative p-4 border-2 border-dark-2 dark:border-light-2",
+    "after:content-[attr(data-total)] after:absolute after:right-4 after:top-7 after:text-6xl after:font-black after:text-dark-2 dark:after:text-light-2",
+  ]}
+>
+  <H2
+    transitionName={tag}
+    class="flex group-hover:scale-110 origin-top-left duration-300"
   >
-    <H2
-      transitionName={tag}
-      class="flex group-hover:text-primary group-hover:scale-110 origin-top-left duration-300"
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 fill-light-1 dark:fill-dark-1"
     >
-      <svg
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-6 fill-current group-hover:fill-primary duration-300"
+      <path
+        d="M7.78428 14L8.2047 10H4V8H8.41491L8.94043 3H10.9514L10.4259 8H14.4149L14.9404 3H16.9514L16.4259 8H20V10H16.2157L15.7953 14H20V16H15.5851L15.0596 21H13.0486L13.5741 16H9.58509L9.05957 21H7.04855L7.57407 16H4V14H7.78428ZM9.7953 14H13.7843L14.2047 10H10.2157L9.7953 14Z"
       >
-        <path
-          d="M7.78428 14L8.2047 10H4V8H8.41491L8.94043 3H10.9514L10.4259 8H14.4149L14.9404 3H16.9514L16.4259 8H20V10H16.2157L15.7953 14H20V16H15.5851L15.0596 21H13.0486L13.5741 16H9.58509L9.05957 21H7.04855L7.57407 16H4V14H7.78428ZM9.7953 14H13.7843L14.2047 10H10.2157L9.7953 14Z"
-        >
-        </path>
-      </svg>
-      {tag}
-    </H2>
-    <div
-      class="text-xs text-zinc-400 group-hover:scale-110 origin-top-left group-hover:text-black duration-300"
-    >
-      Total count: {totalCount}
-    </div>
-    <div
-      class="text-xs text-zinc-400 group-hover:scale-110 origin-top-left group-hover:text-black duration-300"
-    >
-      Last updated on: {dayjs(lastUpdatedOn).format("YYYY-MM-DD HH:mm:ss")}
-    </div>
+      </path>
+    </svg>
+    {tag}
+  </H2>
+  <div class="text-xs group-hover:scale-110 origin-top-left duration-300">
+    Updated on {dayjs(lastUpdatedOn).format("YYYY-MM-DD HH:mm:ss")}
   </div>
 </a>

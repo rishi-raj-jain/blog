@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import H1 from "@/components/H1.astro";
 import { fade } from "astro:transitions";
 import Layout from "@/layouts/Layout.astro";
+import Prose from '@/components/Prose.astro';
 import { getCollection } from "astro:content";
 import { type CollectionEntry } from "astro:content";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -45,31 +46,10 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     <span>{words} words</span>,
     <span>{readingTime}</span>
   </p>
-  <div
-    transition:animate={fade({ duration: "0.5s" })}
-    class:list={[
-      "blog-content",
-      "min-w-full mt-4",
-      "prose",
-      "prose-h2:mb-4",
-      "prose-img:mt-4 prose-img:mb-4",
-      "prose-blockquote:mt-4 prose-blockquote:mb-4",
-      "prose-td:border prose-td:border-light-3",
-      "prose-th:border prose-th:border-light-3 prose-th:pt-2",
-      "prose-table:mt-4 prose-table:mb-4 prose-table:border prose-table:border-collapse prose-table:bg-white",
-      "prose-a:underline prose-a:underline-offset-4 prose-a:text-primary",
-      "prose-p:before:content-none prose-p:after:content-none prose-p:mt-4 prose-p:mb-4",
-      "prose-code:before:content-none prose-code:after:content-none prose-code:font-normal prose-code:rounded prose-code:rounded-md	prose-code:p-1 prose-code:bg-dark-2",
-      "prose-pre:rounded-none prose-pre:font-monaspace prose-pre:p-4 prose-pre:mt-4 prose-pre:mb-4 prose-pre:border prose-pre:border-dark-2 prose-pre:bg-transparent",
-      // dark mode
-      "dark:prose-invert",
-      "dark:prose-h2:text-dark-1",
-      "dark:prose-code:bg-light-2",
-      // unset pre>code style
-      "*:prose-pre:bg-transparent *:dark:prose-pre:bg-transparent",
-    ]}
-  >
-    <Content />
+  <div transition:animate={fade({ duration: "0.5s" })}>
+    <Prose>
+      <Content />
+    </Prose>
   </div>
   <div class="flex mt-8">
     {
@@ -98,7 +78,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
   </div>
 </Layout>
 
-<style is:global>
+<!-- <style is:global>
   html.dark pre.github-dark {
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
@@ -107,7 +87,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
   html.dark pre.github-dark span {
     color: var(--shiki-dark) !important;
   }
-</style>
+</style> -->
 
 <script>
   document.addEventListener("astro:page-load", () => {

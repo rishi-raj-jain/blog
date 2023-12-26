@@ -1,0 +1,52 @@
+---
+import dayjs from "dayjs";
+import H2 from "@/components/H2.astro";
+import { type CollectionEntry } from "astro:content";
+
+interface Props {
+  blogs: CollectionEntry<"blogs">[];
+}
+
+const { blogs } = Astro.props;
+---
+
+<>
+  {
+    blogs.map(({ slug, data }) => {
+      const { tags, date, title, description } = data;
+      const day = dayjs(date).format("DD");
+      const month = dayjs(date).format("MMM");
+      const year = dayjs(date).format("YYYY");
+      return (
+        <div class="flex flex-row mb-10 items-start">
+          <div class="flex flex-col justify-center items-center mr-10">
+            <span class="text-5xl">{day}</span>
+            <span class="text-light-3 dark:text-dark-3 text-xs">
+              {month} {year}
+            </span>
+          </div>
+          <div>
+            <H2 transitionName={slug} class="text-wrap">
+              <a
+                href={`/blogs/${slug}`}
+                class="hover:underline underline-offset-6 decoration-dashed hover:text-primary duration-300"
+              >
+                {title}
+              </a>
+            </H2>
+            <p class="text-wrap text-sm">{description}...</p>
+            <p>
+              {tags.map((tag: string) => (
+                <a href={`/tags/${tag.toLowerCase()}`}>
+                  <span class="text-xs mr-2 hover:text-primary duration-300 text-light-3 dark:text-dark-3">
+                    # {tag.toLowerCase()}
+                  </span>
+                </a>
+              ))}
+            </p>
+          </div>
+        </div>
+      );
+    })
+  }
+</>

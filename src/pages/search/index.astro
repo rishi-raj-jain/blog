@@ -2,22 +2,43 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<!-- placeholder selector: placeholder:xxxx -->
-
 <Layout>
-  <input
-    type="text"
-    id="search-input"
-    placeholder="Type search term here..."
-    class="w-full bg-transparent p-2 text-lg outline-none border border-light-2"
-  />
-  <p id="tips" class="mt-4 mb-4 text-light-3"></p>
+  <div
+    class="group flex w-full border border-light-2 dark:border-dark-2 focus-within:border-primary"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 ml-3 fill-light-2 dark:fill-dark-2 group-focus-within:fill-primary"
+    >
+      <path
+        d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"
+      >
+      </path>
+    </svg>
+    <input
+      type="text"
+      id="search-input"
+      class="grow p-2 bg-transparent outline-none"
+      placeholder="Type search term here..."
+    />
+    <p
+      id="result"
+      class="hidden mt-4 mb-4 text-light-2 dark:text-dark-2 truncate"
+    >
+    </p>
+  </div>
 </Layout>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const tips = document.getElementById("tips");
+    const result = document.getElementById("result");
+    const searchIcon = document.querySelector("svg");
     const searchInput = document.getElementById("search-input");
+
+    searchIcon?.addEventListener("click", () => searchInput?.focus());
+
+    searchInput?.focus();
 
     searchBlogsFromUrl();
 
@@ -26,16 +47,8 @@ import Layout from "@/layouts/Layout.astro";
       const search = urlParams.get("q");
       if (search) {
         searchInput!.setAttribute("value", search);
-        tips!.innerHTML = `Search result for "${search}":`;
       }
     }
-
-    searchInput?.addEventListener("input", (e) => {
-      const target = e.target as HTMLInputElement;
-      tips!.innerHTML = target.value
-        ? `Search result for "${target.value}":`
-        : "";
-    });
 
     function fuzzySearch(keyword: string) {
       // use DOMPurify to sanitize the input
