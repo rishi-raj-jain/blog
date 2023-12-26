@@ -48,6 +48,9 @@ const { title } = Astro.props;
 </html>
 
 <script>
+  import { inject } from '@vercel/analytics';
   import { injectSpeedInsights } from '@vercel/speed-insights';
+
+  inject();
   injectSpeedInsights({});
 </script>
