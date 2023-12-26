@@ -11,36 +11,4 @@ const { Content } = await about!.render();
   <Prose>
     <Content />
   </Prose>
-  <button id="btn">分享至微信朋友圈</button>
 </Layout>
-
-<script is:inline src="/nativeshare.m.js"></script>
-<script is:inline>
-  const nativeShare = new NativeShare();
-  nativeShare.setShareData({
-    title: document.title,
-    desc: "描述内容",
-    // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
-    link: window.location.href,
-    // icon: "图片地址",
-    // 不要过于依赖以下两个回调，很多浏览器是不支持的
-    success: function () {
-      alert("success");
-    },
-    fail: function () {
-      alert("fail");
-    },
-  });
-
-  function call(command) {
-    try {
-      nativeShare.call(command);
-    } catch (err) {
-      // 如果不支持，你可以在这里做降级处理
-      alert("失败了");
-    }
-  }
-
-  const btn = document.getElementById("btn");
-  btn.addEventListener("click", () => call("wechatTimeline"));
-</script>
