@@ -67,24 +67,25 @@ const { title } = Astro.props;
     .then((base64) => {
       Swal.fire({
         title: "分享是快乐的源泉",
-        showCloseButton: true,
+        showCancelButton: true,
         showConfirmButton: false,
-        customClass: { closeButton: 'focus:!shadow-none' },
+        cancelButtonText: '取消分享',
+        customClass: { cancelButton: '!bg-[#36465dfc]' },
         html: `
-          <div>
+          <div class="text-base">
             <img id="qrcode" src="${base64}" class="w-full" />
             <button 
               onclick="downloadQRCode('${base64}')"
-              class="w-full bg-[#64748b] outline-none border-2 rounded border-dark-2 mt-4 p-4 text-dark-1 text-xl hover:bg-[#36465dfc] duration-300"
+              class="w-full bg-[#64748b] outline-none border rounded border-dark-2 mt-4 p-2.5 text-dark-1 hover:bg-[#36465dfc] duration-300"
             >
               保存图片
             </button>
-            <div class="m-6 text-dark-2 text-2xl">or</div>
-            <div class="flex items-center justify-between w-full border-2 rounded border-dark-2 mt-4 text-dark-1 text-xl overflow-hidden">
-              <div class="truncate p-4 text-left text-dark-1">${href}</div>
+            <div class="m-4 text-dark-2 text-xl">or</div>
+            <div class="flex items-center justify-between w-full border rounded border-dark-2 mt-4 text-dark-1 overflow-hidden">
+              <div class="truncate p-2.5 text-left text-dark-1">${href}</div>
               <div 
                 onclick="copyShortUrlToClipboard('${href}')"
-                class="p-4 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
+                class="p-2.5 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
               >
                 复制链接
               </div>
