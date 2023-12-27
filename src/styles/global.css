@@ -30,3 +30,8 @@
   --dark-2: theme(colors.gray.300);
   --dark-3: theme(colors.gray.500);
 }
+
+/* prose-u or prose-ins is not working */
+u, ins {
+  @apply underline-offset-6;
+}
