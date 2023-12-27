@@ -16,8 +16,7 @@ const { tag, totalCount, lastUpdatedOn } = Astro.props;
   data-total={totalCount}
   class:list={[
     "relative p-4 border-2 duration-300",
-    "border-dark-2 hover:border-light-2",
-    "dark:border-light-2 hover:dark:border-dark-2",
+    "border-dark-2 dark:border-light-2 hover:border-primary",
     "after:content-[attr(data-total)] after:absolute after:right-4 after:top-5 after:text-6xl after:font-black after:text-dark-2 dark:after:text-light-2",
   ]}
 >
