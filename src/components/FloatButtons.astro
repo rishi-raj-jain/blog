@@ -53,29 +53,31 @@ const iconClasses = [
 </div>
 
 <script>
-  const share = document.getElementById("share");
-  const backToTop = document.getElementById("back-to-top");
+  document.addEventListener("astro:page-load", () => {
+    const share = document.getElementById("share");
+    const backToTop = document.getElementById("back-to-top");
 
-  share?.addEventListener("click", () => {
-    window.sharePage();
-  });
-
-  backToTop?.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+    share?.addEventListener("click", () => {
+      window.sharePage();
     });
-  });
 
-  document.addEventListener("scroll", () => {
-    if (!backToTop) return;
-    const top = document.documentElement.scrollTop || document.body.scrollTop;
-    if (top > 700) {
-      backToTop.classList.remove("invisible");
-      backToTop.classList.remove("opacity-0");
-    } else {
-      backToTop.classList.add("invisible");
-      backToTop.classList.add("opacity-0");
-    }
+    backToTop?.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    document.addEventListener("scroll", () => {
+      if (!backToTop) return;
+      const top = document.documentElement.scrollTop || document.body.scrollTop;
+      if (top > 700) {
+        backToTop.classList.remove("invisible");
+        backToTop.classList.remove("opacity-0");
+      } else {
+        backToTop.classList.add("invisible");
+        backToTop.classList.add("opacity-0");
+      }
+    });
   });
 </script>
