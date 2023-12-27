@@ -15,4 +15,7 @@
 - About me page
 - config.ts 究竟有啥用？
 - 博客内容 revision
+- 短链分享以及二维码分享功能
+  - <https://sweetalert2.github.io>
+  - <https://github.com/soldair/node-qrcode>
 - <https://github.com/expressive-code/expressive-code>

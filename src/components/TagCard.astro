@@ -15,14 +15,13 @@ const { tag, totalCount, lastUpdatedOn } = Astro.props;
   href={`/tags/${tag}`}
   data-total={totalCount}
   class:list={[
-    "group relative p-4 border-2 border-dark-2 dark:border-light-2",
+    "relative p-4 border-2 duration-300",
+    "border-dark-2 hover:border-light-2",
+    "dark:border-light-2 hover:dark:border-dark-2",
     "after:content-[attr(data-total)] after:absolute after:right-4 after:top-5 after:text-6xl after:font-black after:text-dark-2 dark:after:text-light-2",
   ]}
 >
-  <H2
-    transitionName={tag}
-    class="flex group-hover:scale-110 origin-top-left duration-300"
-  >
+  <H2 transitionName={tag} class="flex">
     <svg
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +34,7 @@ const { tag, totalCount, lastUpdatedOn } = Astro.props;
     </svg>
     {tag}
   </H2>
-  <div class="text-xs group-hover:scale-110 origin-top-left duration-300">
+  <div class="text-xs">
     Updated on {dayjs(lastUpdatedOn).format("YYYY.MM.DD")}
   </div>
 </a>
