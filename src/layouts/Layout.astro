@@ -5,6 +5,7 @@ import { config } from "@/config/global";
 import Footer from "@/layouts/Footer.astro";
 import Header from "@/layouts/Header.astro";
 import { ViewTransitions } from "astro:transitions";
+import FloatButtons from '@/components/FloatButtons.astro';
 
 interface Props {
   title?: string;
@@ -45,6 +46,7 @@ const { title } = Astro.props;
     <Header />
     <slot />
     <Footer />
+    <FloatButtons />
   </body>
 </html>
 
@@ -62,6 +64,7 @@ const { title } = Astro.props;
 
   const href = window.location.href;
 
+  window.sharePage = function () {
   QRCode
     .toDataURL(href, { margin: 1 })
     .then((base64) => {
@@ -95,6 +98,7 @@ const { title } = Astro.props;
       });
     })
     .catch((error) => console.error(error));
+  }
   
   window.downloadQRCode = function (base64) {
     const link = document.createElement('a');

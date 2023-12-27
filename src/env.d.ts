@@ -2,6 +2,7 @@
 /// <reference types="astro/client" />
 
 interface Window {
+  sharePage(): void
   downloadQRCode(base64: string): void;
   copyShortUrlToClipboard(url: string): void;
 }
