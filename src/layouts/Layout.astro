@@ -67,23 +67,24 @@ const { title } = Astro.props;
     .then((base64) => {
       Swal.fire({
         title: "赠人玫瑰，手有余香",
+        showCloseButton: true,
         showConfirmButton: false,
         html: `
-      <div>
-        <img src="${base64}" class="w-full" />
-        <button class="w-full bg-[#64748b] outline-none border-2 rounded border-dark-2 mt-4 p-4 text-dark-1 text-xl hover:bg-[#36465dfc] duration-300">保存图片</button>
-        <div class="m-6 text-dark-2 text-2xl">or</div>
-        <div class="flex items-center justify-between w-full border-2 rounded border-dark-2 mt-4 text-dark-1 text-xl overflow-hidden">
-          <div class="truncate p-4 text-left text-dark-1">${href}</div>
-          <div 
-            onclick="copyShortUrlToClipboard('${href}')"
-            class="p-4 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
-          >
-            复制链接
-          </div>
-        </div>
-      </div> 
-    `,
+          <div>
+            <img src="${base64}" class="w-full" />
+            <button class="w-full bg-[#64748b] outline-none border-2 rounded border-dark-2 mt-4 p-4 text-dark-1 text-xl hover:bg-[#36465dfc] duration-300">保存图片</button>
+            <div class="m-6 text-dark-2 text-2xl">or</div>
+            <div class="flex items-center justify-between w-full border-2 rounded border-dark-2 mt-4 text-dark-1 text-xl overflow-hidden">
+              <div class="truncate p-4 text-left text-dark-1">${href}</div>
+              <div 
+                onclick="copyShortUrlToClipboard('${href}')"
+                class="p-4 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
+              >
+                复制链接
+              </div>
+            </div>
+          </div> 
+        `,
       });
     })
     .catch((error) => console.error(error));
