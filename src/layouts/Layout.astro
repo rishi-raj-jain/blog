@@ -72,8 +72,13 @@ const { title } = Astro.props;
         customClass: { closeButton: 'focus:!shadow-none' },
         html: `
           <div>
-            <img src="${base64}" class="w-full" />
-            <button class="w-full bg-[#64748b] outline-none border-2 rounded border-dark-2 mt-4 p-4 text-dark-1 text-xl hover:bg-[#36465dfc] duration-300">保存图片</button>
+            <img id="qrcode" src="${base64}" class="w-full" />
+            <button 
+              onclick="downloadQRCode('${base64}')"
+              class="w-full bg-[#64748b] outline-none border-2 rounded border-dark-2 mt-4 p-4 text-dark-1 text-xl hover:bg-[#36465dfc] duration-300"
+            >
+              保存图片
+            </button>
             <div class="m-6 text-dark-2 text-2xl">or</div>
             <div class="flex items-center justify-between w-full border-2 rounded border-dark-2 mt-4 text-dark-1 text-xl overflow-hidden">
               <div class="truncate p-4 text-left text-dark-1">${href}</div>
@@ -89,6 +94,15 @@ const { title } = Astro.props;
       });
     })
     .catch((error) => console.error(error));
+  
+  window.downloadQRCode = function (base64) {
+    const link = document.createElement('a');
+    link.download = `${document.title}.qrcode.png`;
+    link.href = base64;
+    link.click();
+
+    Swal.close();
+  }
 
   window.copyShortUrlToClipboard = function (url) {
     const el = document.createElement('textarea');
@@ -97,5 +111,7 @@ const { title } = Astro.props;
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+
+    Swal.close();
   }
 </script>
