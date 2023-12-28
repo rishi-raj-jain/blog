@@ -9,13 +9,10 @@
   - <https://www.vantajs.com/?effect=net>
   - <https://jparticles.js.org/#/examples/quick-start>
 - 全局搜索
-- 博客添加置顶功能
-- 回到顶部
 - 404 page
 - About me page
 - config.ts 究竟有啥用？
 - 博客内容 revision
-- 短链分享以及二维码分享功能
-  - <https://sweetalert2.github.io>
-  - <https://github.com/soldair/node-qrcode>
+- 短链
+- 使用 getBlogs 替换 getCollections
 - <https://github.com/expressive-code/expressive-code>

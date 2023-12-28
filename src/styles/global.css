@@ -29,6 +29,8 @@
   --dark-1: theme(colors.gray.100);
   --dark-2: theme(colors.gray.300);
   --dark-3: theme(colors.gray.500);
+
+  --code-dark-bg: #24292e;
 }
 
 /* prose-u or prose-ins is not working */

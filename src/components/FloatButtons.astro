@@ -53,6 +53,9 @@ const iconClasses = [
 </div>
 
 <script>
+  import QRCode from "qrcode";
+  import Swal from "sweetalert2";
+
   document.addEventListener("astro:page-load", () => {
     const share = document.getElementById("share");
     const backToTop = document.getElementById("back-to-top");
@@ -80,4 +83,88 @@ const iconClasses = [
       }
     });
   });
+
+  window.downloadQRCode = function (base64) {
+    const link = document.createElement("a");
+    link.download = `${document.title}.qrcode.png`;
+    link.href = base64;
+    link.click();
+
+    Swal.close();
+  };
+
+  window.copyShortUrlToClipboard = function (url) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url);
+    } else {
+      const textarea = document.createElement("textarea");
+      document.body.appendChild(textarea);
+      textarea.style.position = "fixed";
+      textarea.style.clip = "rect(0 0 0 0)";
+      textarea.style.top = "10px";
+      textarea.value = url;
+      textarea.select();
+      document.execCommand("copy", true);
+      document.body.removeChild(textarea);
+    }
+
+    Swal.close();
+  };
+
+  window.sharePage = function () {
+    const url = window.location.href;
+    QRCode.toDataURL(url, { margin: 1 })
+      .then((base64) => {
+        Swal.fire({
+          title: "分享是快乐的源泉",
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: "取消分享",
+          customClass: { cancelButton: "!bg-[#36465dfc]" },
+          html: `
+            <div class="text-base">
+              <img id="qrcode" src="${base64}" class="w-full" />
+              <button 
+                onclick="downloadQRCode('${base64}')"
+                class="w-full bg-[#64748b] outline-none border rounded border-dark-2 mt-4 p-2.5 text-dark-1 hover:bg-[#36465dfc] duration-300"
+              >
+                保存图片
+              </button>
+              <div class="m-4 text-dark-2 text-xl">or</div>
+              <div class="flex items-center justify-between w-full border rounded border-dark-2 mt-4 text-dark-1 overflow-hidden">
+                <div class="truncate p-2.5 text-left text-dark-1">${url}</div>
+                <div 
+                  onclick="copyShortUrlToClipboard('${url}')"
+                  class="p-2.5 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
+                >
+                  复制链接
+                </div>
+              </div>
+            </div>
+          `,
+        });
+      })
+      .catch((error) => {
+        // Only show the url if the QRCode generation failed
+        Swal.fire({
+          title: "分享是快乐的源泉",
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: "取消分享",
+          customClass: { cancelButton: "!bg-[#36465dfc]" },
+          html: `
+            <div class="flex items-center justify-between w-full border rounded border-dark-2 mt-4 text-dark-1 overflow-hidden">
+              <div class="truncate p-2.5 text-left text-dark-1">${url}</div>
+              <div 
+                onclick="copyShortUrlToClipboard('${url}')"
+                class="p-2.5 w-28 min-w-28 text-dark-1 bg-[#64748b] hover:bg-[#36465dfc] duration-300 cursor-pointer"
+              >
+                复制链接
+              </div>
+            </div>
+          `,
+        });
+        console.error("QRCode.toDataURL: ", error);
+      });
+  };
 </script>

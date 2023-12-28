@@ -17,6 +17,7 @@ export default {
 				'dark-1': 'var(--dark-1)',
 				'dark-2': 'var(--dark-2)',
 				'dark-3': 'var(--dark-3)',
+				'code-dark-bg': 'var(--code-dark-bg)',
 			},
 			textUnderlineOffset: {
 				6: '6px',

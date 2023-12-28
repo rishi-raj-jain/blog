@@ -3,10 +3,11 @@ import dayjs from "dayjs";
 import H1 from "@/components/H1.astro";
 import { fade } from "astro:transitions";
 import Layout from "@/layouts/Layout.astro";
-import Prose from '@/components/Prose.astro';
+import Prose from "@/components/Prose.astro";
 import { getCollection } from "astro:content";
 import { type CollectionEntry } from "astro:content";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import DeprecatedBar from "@/components/DeprecatedBar.astro";
 
 interface Props {
   blog: CollectionEntry<"blogs">;
@@ -46,6 +47,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     <span>{words} words</span>,
     <span>{readingTime}</span>
   </p>
+  <DeprecatedBar deprecated={frontmatter.deprecated} />
   <div transition:animate={fade({ duration: "0.5s" })}>
     <Prose>
       <Content />
@@ -78,17 +80,6 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
   </div>
 </Layout>
 
-<!-- <style is:global>
-  html.dark pre.github-dark {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-  }
-
-  html.dark pre.github-dark span {
-    color: var(--shiki-dark) !important;
-  }
-</style> -->
-
 <script>
   document.addEventListener("astro:page-load", () => {
     const tocHeader = document.querySelector("#table-of-contents");
@@ -111,11 +102,14 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     const details = document.createElement("details");
     details.id = "details-table-of-contents";
     details.classList.add(
-      "border-2",
+      "border",
       "open:pb-4",
-      "bg-white",
       "select-none",
-      "cursor-pointer"
+      "cursor-pointer",
+      "bg-white",
+      "dark:bg-code-dark-bg",
+      "border-dark-2",
+      "dark:border-light-3"
     );
 
     const summary = document.createElement("summary");
