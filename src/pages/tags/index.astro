@@ -1,11 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getCollection } from "astro:content";
 import TagCard from "@/components/TagCard.astro";
 import getTaggedBlogs from "@/utils/getTaggedBlogs";
 
-const blogs = await getCollection("blogs");
-const taggedBlogs = getTaggedBlogs(blogs);
+const taggedBlogs = getTaggedBlogs();
 ---
 
 <Layout title="CaptainOfPhB | Tags">

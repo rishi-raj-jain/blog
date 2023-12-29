@@ -1,24 +1,26 @@
+import getBlogs from './getBlogs';
 import getSortedBlogs from './getSortedBlogs';
 import type { CollectionEntry } from "astro:content";
 
 type TaggedBlogs = Record<string, CollectionEntry<"blogs">[]>;
 
-export default function getTaggedBlogs(blogs: CollectionEntry<"blogs">[]) {
-  const tags: TaggedBlogs = {};
+export default async function getTaggedBlogs() {
+  const blogs = await getBlogs();
+  const lowercaseTags: TaggedBlogs = {};
 
   blogs.forEach((blog) => {
-    const blogTags = blog.data.tags as string[];
-    if (!blogTags || !blogTags.length) return;
-    blogTags.forEach((tag) => {
-      const tagTolowerCase = tag.toLowerCase();
-      if (!tags[tagTolowerCase]) {
-        tags[tagTolowerCase] = [];
+    const tags = blog.data.tags;
+    if (!tags || !tags.length) return;
+    tags.forEach((tag) => {
+      const lowercaseTag = tag.toLowerCase();
+      if (!lowercaseTags[lowercaseTag]) {
+        lowercaseTags[lowercaseTag] = [];
       }
-      tags[tagTolowerCase].push(blog);
+      lowercaseTags[lowercaseTag].push(blog);
     });
   });
 
-  return Object.entries(tags).reduce<TaggedBlogs>(
+  return Object.entries(lowercaseTags).reduce<TaggedBlogs>(
     (acc, [tag, blogs]) => {
       const sortedBlogs = getSortedBlogs(blogs);
       return { ...acc, [tag]: sortedBlogs };

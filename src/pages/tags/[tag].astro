@@ -5,15 +5,14 @@ import Layout from "@/layouts/Layout.astro";
 import Blogs from "@/components/Blogs.astro";
 import getTaggedBlogs from "@/utils/getTaggedBlogs";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 
 interface Props {
   blogs: CollectionEntry<"blogs">[];
 }
 
 export const getStaticPaths = (async () => {
-  const blogs = await getCollection("blogs");
-  const taggedBlogs = getTaggedBlogs(blogs);
+  const taggedBlogs = getTaggedBlogs();
   return Object.entries(taggedBlogs).map(([tag, blogs]) => {
     return {
       params: { tag },
