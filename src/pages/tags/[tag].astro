@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const getStaticPaths = (async () => {
-  const taggedBlogs = getTaggedBlogs();
+  const taggedBlogs = await getTaggedBlogs();
   return Object.entries(taggedBlogs).map(([tag, blogs]) => {
     return {
       params: { tag },

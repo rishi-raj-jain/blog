@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import TagCard from "@/components/TagCard.astro";
 import getTaggedBlogs from "@/utils/getTaggedBlogs";
 
-const taggedBlogs = getTaggedBlogs();
+const taggedBlogs = await getTaggedBlogs();
 ---
 
 <Layout title="CaptainOfPhB | Tags">
@@ -13,7 +13,7 @@ const taggedBlogs = getTaggedBlogs();
         <TagCard
           tag={tag}
           totalCount={blogs.length}
-          lastUpdatedOn={blogs[0].data.date}
+          lastUpdatedOn={blogs[0].data.date.toString()}
         />
       ))
     }
