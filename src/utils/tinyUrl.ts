@@ -1,5 +1,6 @@
 async function getToken() {
   if (import.meta.env.PROD) {
+    console.log(import.meta.env);
     return process.env.TINYURL_TOKEN;
   }
   const globs = import.meta.glob(`/.secret.txt`, { as: "raw" });
