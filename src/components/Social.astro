@@ -3,12 +3,17 @@ import { config } from "@/config/global";
 ---
 
 <div class="flex space-x-2">
+  <a href={`mailto:${config.author.email.replace("#", "@")}`}>
+    Email
+  </a>
   {
-    config.socialMedias.map((each, index) => {
+    config.socialMedias.map((each) => {
       return (
         <>
-          {!!index && <span class="">|</span>}
-          <a href={each.url} target="_blank">{each.title}</a>
+          <span>|</span>
+          <a href={each.url} target="_blank">
+            {each.title}
+          </a>
         </>
       );
     })
