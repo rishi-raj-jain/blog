@@ -33,7 +33,7 @@ const { tag, totalCount, lastUpdatedOn } = Astro.props;
     </svg>
     {tag}
   </H2>
-  <div class="text-xs">
-    Updated on {dayjs(lastUpdatedOn).format("YYYY.MM.DD")}
+  <div class="text-sm text-light-3 dark:text-dark-3">
+    Latest updated at {dayjs(lastUpdatedOn).format("YYYY.MM.DD")}
   </div>
 </a>

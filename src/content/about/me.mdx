@@ -4,13 +4,14 @@ date: 2020-09-20 14:16:27
 slug: me
 ---
 
+import config from '@/config/global';
 import { Image } from 'astro:assets';
 import me from '@/assets/images/me.png';
 import Social from '@/components/Social.astro';
 
 <Image 
   src={me} 
-  alt="CaptainOfPhB" 
+  alt={config.author.name}
   class="rounded-full w-full lg:w-1/3 !mb-10 shadow-2xl hover:animate-pulse hover:scale-75 duration-300"
 />
 

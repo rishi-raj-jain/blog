@@ -1,5 +1,6 @@
 ---
 import getBlogs from '@/utils/getBlogs';
+import { config } from "@/config/global";
 import Layout from "@/layouts/Layout.astro";
 import Blogs from "@/components/Blogs.astro";
 import getSortedBlogs from "@/utils/getSortedBlogs";
@@ -8,6 +9,6 @@ const blogs = await getBlogs();
 const sortedBlogs = getSortedBlogs(blogs);
 ---
 
-<Layout title="CaptainOfPhB | Blogs">
+<Layout title={`Blogs | ${config.author.name}`}>
   <Blogs blogs={sortedBlogs} />
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import H2 from "@/components/H2.astro";
-import getBlogs from '@/utils/getBlogs';
+import getBlogs from "@/utils/getBlogs";
+import { config } from "@/config/global";
 import Layout from "@/layouts/Layout.astro";
 import getSortedBlogs from "@/utils/getSortedBlogs";
 import BlogCard from "@/components/BlogCard.astro";
@@ -10,7 +11,7 @@ const sortedBlogs = getSortedBlogs(blogs);
 const pinnedBlogs = sortedBlogs.filter((blog) => blog.data.pinned);
 ---
 
-<Layout title="CaptainOfPhB">
+<Layout title={`It's ${config.author.name}`}>
   <H2 class="flex mt-10 mb-4">
     <svg
       viewBox="0 0 24 24"
@@ -56,5 +57,5 @@ const pinnedBlogs = sortedBlogs.filter((blog) => blog.data.pinned);
     </svg>
      Featured project
   </H2>
-	Nothing here yet
+   Nothing here yet
 </Layout>

@@ -6,6 +6,7 @@ import Blogs from "@/components/Blogs.astro";
 import getTaggedBlogs from "@/utils/getTaggedBlogs";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { type CollectionEntry } from "astro:content";
+import { config } from '@/config/global';
 
 interface Props {
   blogs: CollectionEntry<"blogs">[];
@@ -25,13 +26,28 @@ const { tag } = Astro.params;
 const { blogs } = Astro.props;
 ---
 
-<Layout title={tag}>
+<Layout title={`# ${tag} | ${config.author.name}`}>
   <Breadcrumbs
     crumbs={[
       { label: "Tags", href: "/tags" },
       { label: tag, href: `/tags/${tag}` },
     ]}
   />
-  <H1 transitionName={tag} class='mb-12'># {tag}</H1>
+  <H1 transitionName={tag} class="flex mb-12">
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class:list={[
+        "w-8 group-hover:fill-primary duration-300",
+        "fill-light-1 dark:fill-dark-1",
+      ]}
+    >
+      <path
+        d="M7.78428 14L8.2047 10H4V8H8.41491L8.94043 3H10.9514L10.4259 8H14.4149L14.9404 3H16.9514L16.4259 8H20V10H16.2157L15.7953 14H20V16H15.5851L15.0596 21H13.0486L13.5741 16H9.58509L9.05957 21H7.04855L7.57407 16H4V14H7.78428ZM9.7953 14H13.7843L14.2047 10H10.2157L9.7953 14Z"
+      >
+      </path>
+    </svg>
+    {tag}
+  </H1>
   <Blogs blogs={blogs} />
 </Layout>

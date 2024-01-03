@@ -42,7 +42,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     transition:animate={fade({ duration: "0.5s" })}
   >
     <span>
-      Updated on {dayjs(lastModified).format("YYYY.MM.DD")},
+      Updated at {dayjs(lastModified).format("YYYY.MM.DD")},
     </span>
     <span>{words} words</span>,
     <span>{readingTime}</span>
@@ -67,7 +67,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             class:list={[
-              "w-4  group-hover:fill-primary duration-300",
+              "w-4 group-hover:fill-primary duration-300",
               "fill-light-3 dark:fill-dark-3",
             ]}
           >
