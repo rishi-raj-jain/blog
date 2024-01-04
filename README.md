@@ -11,5 +11,8 @@
 - 全局搜索
 - About me page
 - 博客内容 revision
-- 短链
 - <https://github.com/expressive-code/expressive-code>
+- private 页面？
+- tinyUrl hits 分享次数
+- 评论系统
+  - <https://giscus.app/zh-CN>
