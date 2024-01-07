@@ -89,9 +89,11 @@ const iconClasses = [
 
   async function getShortUrl() {
     window.tinyUrlOfCurrentPage = null;
-    const alias = await createTinyUrl();
-    if (alias) {
-      const tinyUrl = await getTinyUrlInfo(alias);
+    const partialTinyUrl = await createTinyUrl();
+    if (!partialTinyUrl) return;
+    fetch(partialTinyUrl.tiny_url);
+    if (partialTinyUrl.alias) {
+      const tinyUrl = await getTinyUrlInfo(partialTinyUrl.alias);
       window.tinyUrlOfCurrentPage = tinyUrl;
     }
   }

@@ -13,6 +13,6 @@
 - 博客内容 revision
 - <https://github.com/expressive-code/expressive-code>
 - private 页面？
-- tinyUrl hits 分享次数
+- tinyUrl hits 访问次数(fetch 短链使访问次数 +1)
 - 评论系统
   - <https://giscus.app/zh-CN>

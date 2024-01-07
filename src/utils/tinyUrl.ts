@@ -7,7 +7,7 @@ async function getToken() {
   return localToken;
 }
 
-export async function createTinyUrl(url?: string): Promise<string | null> {
+export async function createTinyUrl(url?: string): Promise<TinyUrl | null> {
   const token = await getToken();
 
   const body = new URLSearchParams({
@@ -24,7 +24,7 @@ export async function createTinyUrl(url?: string): Promise<string | null> {
   if (!response.ok) return null;
 
   const tinyUrl: TinyUrlResponse<TinyUrl> = await response.json();
-  return tinyUrl.data.alias;
+  return tinyUrl.data;
 }
 
 export async function getTinyUrlInfo(alias: string): Promise<TinyUrl | null> {
