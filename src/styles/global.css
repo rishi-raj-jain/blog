@@ -35,5 +35,5 @@
 
 /* prose-u or prose-ins is not working */
 u, ins {
-  @apply underline-offset-6;
+  @apply underline-offset-4;
 }

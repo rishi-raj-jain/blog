@@ -2,9 +2,10 @@ import mdx from "@astrojs/mdx";
 import remarkToc from "remark-toc";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
+import codesandbox from "remark-codesandbox";
 import rehypeExternalLinks from "rehype-external-links";
-import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
-import { remarkModifiedTime } from './plugins/remark-modified-time.mjs';
+import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
+import { remarkModifiedTime } from "./plugins/remark-modified-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkReadingTime,
       remarkModifiedTime,
+      [codesandbox, { mode: "meta" }],
       [
         remarkToc,
         {
@@ -36,7 +38,7 @@ export default defineConfig({
           content: { type: "text", value: " 🔗" },
         },
       ],
-    ]
+    ],
   },
   integrations: [tailwind(), mdx()],
 });

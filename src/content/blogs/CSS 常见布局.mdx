@@ -1,92 +1,46 @@
 ---
 title: CSS 常见布局
 date: 2018-03-16 14:55:37
-draft: false
-tags: [CSS, layout]
-slug: css-layout
-description: CSS 是一门艺术，学好 CSS 需要投入大量的时间去实践，今天我们主要聊一聊工作中常用到的 CSS 布局套路
+tags:
+  - CSS
+  - layout
+slug: css-common-layout
+description: CSS 中简单的布局套路
 ---
+
+import Block from '@/components/Block.astro';
 
 前端工程师的一门必修课程就是 CSS ( Cascading Style Sheet, 层叠样式表)，CSS 是一门艺术，学好 CSS 需要投入大量的时间去实践。今天我们主要聊一聊工作中常用到的 CSS 布局套路。
 
-> 文中内联元素指 display: inline，块级元素指 display: block，弹性布局指 display: flex。
+<Block>
+  文中内联元素指 `display: inline`，块级元素指 `display: block`，弹性布局指 `display: flex`。
+</Block>
 
-## 一、水平居中
+## 水平居中
 
-### 内联元素
+常见的水平居中有三种方式。
 
-```html
-<style>
-  .wrapper {
-    text-align: center;
-  }
-</style>
+### 使用 margin
 
-<div class="wrapper">
-  <span class="inline">内联元素水平居中</span>
-</div>
+```html codesandbox=html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .block {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <span class="block">绝对定位水平居中</div>
+  </div>
+</body>
+</html>
 ```
-
-说明：父元素下的子元素会继承 `text-align: center` 属性；当父元素宽度小于内联元素的宽度时无效。
-
-### 块级元素
-
-1、 父元素不定宽，子元素定宽(300px)
-
-```html
-<style>
-  .block {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto；;
-  }
-</style>
-
-<div class="wrapper">
-  <div class="block">块级元素水平居中</div>
-</div>
-```
-
-2、父元素定宽（500px），子元素定宽(300px)
-
-- 第一种：
-
-```html
-<style>
-  .wrapper{
-    padding-left：150px；
-    padding-right：150px；
-  }
-  .block{
-    width: 200px;
-  }
-</style>
-
-<div class="wrapper">
-  <div class="block">块级元素水平居中</div>
-</div>
-```
-
-- 第二种：
-
-```html
-<style>
-  .wrapper {
-    width: 500px;
-  }
-  .block {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto；;
-  }
-</style>
-
-<div class="wrapper">
-  <div class="block">块级元素水平居中</div>
-</div>
-```
-
-说明：推荐使用第一种方法。
 
 ### 使用绝对定位
 
@@ -107,9 +61,11 @@ description: CSS 是一门艺术，学好 CSS 需要投入大量的时间去实�
 </div>
 ```
 
-说明：该方法会适用于内联元素与块级元素；`top、bottom、left、right` 等属性是参考父元素而定，而 `translate` 是参考自身而定；值得注意的是，**该方法会使内联元素计算出来的 display 属性为 block**。
+<Block title='Tips'>
+  该方法会适用于内联元素与块级元素；`top、bottom、left、right` 等属性是参考父元素而定，而 `translate` 是参考自身而定；值得注意的是，*该方法会使内联元素计算出来的 display 属性为 block*。
+</Block>
 
-### 使用弹性布局
+### 使用 Flex 弹性布局
 
 ```html
 <style>
@@ -124,7 +80,9 @@ description: CSS 是一门艺术，学好 CSS 需要投入大量的时间去实�
 </div>
 ```
 
-说明：若浏览器支持 flex，则强烈推荐使用 flex 布局，父元素下块级元素与内联元素居中表现均为良好；注意在不改变 flex 的方向 `flex-deriction` 的时候（默认为水平方向），水平居中需设置 `justify-content: center`，当改变 flex 的方向时（`flex-deriction: column`），水平居中需设置 `align-items: center`；垂直居中同理。
+<Block title='Tips'>
+  若浏览器支持 flex，则强烈推荐使用 flex 布局，父元素下块级元素与内联元素居中表现均为良好。
+</Block>
 
 ## 二、垂直居中
 

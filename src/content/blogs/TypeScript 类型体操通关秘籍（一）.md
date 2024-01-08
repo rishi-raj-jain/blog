@@ -5,12 +5,12 @@ pinned: true
 draft: false
 tags: ['TypeScript']
 slug: "juejin-book-7047524421182947366-1"
-description: 'TS 中的一些小技巧。'
+description: 'TS 中的一些小技巧'
 ---
 
 TypeScript 类型系统中的一些类型运算。
 
-## 条件运算 `extends ? :`
+## 条件运算
 
 ts 为<u>图灵类型完备</u>的类型系统，具有类型计算功能。`extends` 相当于 js 中的三元运算符。
 
@@ -21,7 +21,7 @@ type res = isTwo<1>; // false
 type res2 = isTwo<2>; // true
 ```
 
-## 推导 `infer`
+## 推导
 
 `infer` 后面的泛型表示待推导的类型。
 
@@ -31,7 +31,7 @@ type First<Tuple extends unknown[]> = Tuple extends [infer T,...infer R] ? T : n
 type res = First<[1,2,3]>; // 1
 ```
 
-## 交叉 `&`
+## 交叉
 
 对两种类型取交集，没有交集则为 `never`。
 
@@ -60,5 +60,3 @@ type MapType<T> = {
 ```
 
 `Key` 默认可能是 `string`、`number`、`symbol` 这三种，所以要和 `string` 取交叉部分。
-
-完。

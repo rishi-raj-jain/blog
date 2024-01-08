@@ -1,0 +1,60 @@
+---
+interface Props {
+  title?: string;
+  status: BlockStatus;
+}
+
+enum BlockStatus {
+  Info = "info",
+  Warning = "warning",
+  Success = "success",
+  Error = "error",
+}
+
+const Title = {
+  info: "Info",
+  error: "Error",
+  warning: "Warning",
+  success: "Success",
+};
+
+const { title, status } = Astro.props;
+
+const finalStatus = status || BlockStatus.Info;
+const finalTitle = title || Title[finalStatus];
+---
+
+<>
+  {
+    BlockStatus.Info === finalStatus && (
+      <div class="my-4 p-4 pb-0 border border-sky-500 bg-sky-50 dark:bg-sky-900">
+        <div class="-mb-2 text-sky-500">{finalTitle}</div>
+        <slot />
+      </div>
+    )
+  }
+  {
+    BlockStatus.Warning === finalStatus && (
+      <div class="my-4 p-4 pb-0 border border-yellow-500 bg-yellow-50 dark:bg-yellow-900">
+        <div class="-mb-2 text-yellow-500">{finalTitle}</div>
+        <slot />
+      </div>
+    )
+  }
+  {
+    BlockStatus.Success === finalStatus && (
+      <div class="my-4 p-4 pb-0 border border-green-500 bg-green-50 dark:bg-green-900">
+        <div class="-mb-2 text-green-500">{finalTitle}</div>
+        <slot />
+      </div>
+    )
+  }
+  {
+    BlockStatus.Error === finalStatus && (
+      <div class="my-4 p-4 pb-0 border border-red-500 bg-red-50 dark:bg-red-900">
+        <div class="-mb-2 text-red-500">{finalTitle}</div>
+        <slot />
+      </div>
+    )
+  }
+</>
