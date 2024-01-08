@@ -4,6 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import codesandbox from "remark-codesandbox";
 import rehypeExternalLinks from "rehype-external-links";
+import { remarkCodeSandbox } from "./plugins/remark-codesandbox.mjs";
 import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
 import { remarkModifiedTime } from "./plugins/remark-modified-time.mjs";
 
@@ -19,7 +20,6 @@ export default defineConfig({
     remarkPlugins: [
       remarkReadingTime,
       remarkModifiedTime,
-      [codesandbox, { mode: "meta" }],
       [
         remarkToc,
         {
@@ -28,6 +28,8 @@ export default defineConfig({
           heading: "Table of Contents",
         },
       ],
+      [codesandbox, { mode: "meta" }],
+      remarkCodeSandbox,
     ],
     rehypePlugins: [
       [

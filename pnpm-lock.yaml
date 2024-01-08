@@ -65,6 +65,12 @@ dependencies:
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
+  unist-builder:
+    specifier: ^4.0.0
+    version: 4.0.0
+  unist-util-visit:
+    specifier: ^5.0.0
+    version: 5.0.0
 
 packages:
 
@@ -5825,6 +5831,12 @@ packages:
 
   /unist-builder@2.0.3:
     resolution: {integrity: sha512-f98yt5pnlMWlzP539tPc4grGMsFaQQlP/vM396b00jngsiINumNmsY8rkXjfoi1c6QaM8nQ3vaGDuoKWbe/1Uw==}
+    dev: false
+
+  /unist-builder@4.0.0:
+    resolution: {integrity: sha512-wmRFnH+BLpZnTKpc5L7O67Kac89s9HMrtELpnNaE6TAobq5DTZZs5YaTQfAZBA9bFPECx2uVAPO31c+GVug8mg==}
+    dependencies:
+      '@types/unist': 3.0.2
     dev: false
 
   /unist-util-is@4.1.0:
