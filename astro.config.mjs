@@ -18,6 +18,8 @@ export default defineConfig({
       },
     },
     remarkPlugins: [
+      [codesandbox, { mode: "meta" }],
+      remarkCodeSandbox,
       remarkReadingTime,
       remarkModifiedTime,
       [
@@ -28,8 +30,6 @@ export default defineConfig({
           heading: "Table of Contents",
         },
       ],
-      [codesandbox, { mode: "meta" }],
-      remarkCodeSandbox,
     ],
     rehypePlugins: [
       [
@@ -38,6 +38,7 @@ export default defineConfig({
           target: "_blank",
           rel: ["noopener", "noreferrer"],
           content: { type: "text", value: " 🔗" },
+          contentProperties: { class: "link-icon" },
         },
       ],
     ],
