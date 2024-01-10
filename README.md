@@ -17,4 +17,4 @@
 - 评论系统
   - <https://giscus.app/zh-CN>
 - octokit.js
-- `pnpm new` command to create blog by .sh file(auto generate `title`, `description` and `date`)
+- code block copy
