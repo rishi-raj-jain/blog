@@ -58,7 +58,10 @@ const iconClasses = [
   import { createTinyUrl, getTinyUrlInfo } from "@/utils/tinyUrl";
 
   document.addEventListener("astro:page-load", () => {
-    getShortUrl();
+    // only fetch short link in prod env
+    if (import.meta.env.PROD) {
+      getShortUrl();
+    }
 
     const share = document.getElementById("share");
     const backToTop = document.getElementById("back-to-top");
