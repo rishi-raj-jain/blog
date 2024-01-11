@@ -12,12 +12,12 @@ const { blog } = Astro.props;
 <a
   href={`/blogs/${blog.slug}`}
   class:list={[
-    "border-dark-2 dark:border-light-2 hover:border-primary",
+    "border-dark-2 dark:border-light-2 hover:!border-primary",
     "flex flex-col justify-between p-4 border-2 duration-300",
   ]}
 >
   <p>{blog.data.description}...</p>
   <p class="mt-4 italic text-right text-light-3 dark:text-dark-3">
-    {dayjs(blog.data.lastModified).format("YYYY.MM.DD")},《{blog.data.title}》
+    {dayjs(blog.data.date).format("YYYY.MM.DD")},《{blog.data.title}》
   </p>
 </a>

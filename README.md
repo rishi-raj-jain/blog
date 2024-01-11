@@ -18,3 +18,7 @@
   - <https://giscus.app/zh-CN>
 - octokit.js
 - code block copy
+
+## Other
+
+Support codesandbox template alias <https://codesandbox.io/api/v1/sandboxes/templates/official>

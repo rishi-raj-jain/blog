@@ -78,45 +78,87 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
       ))
     }
   </div>
-  <script
-    src="https://giscus.app/client.js"
-    data-repo="CaptainOfPhB/blog"
-    data-repo-id="R_kgDOK453LA"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOK453LM4CcVKf"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async></script>
+  <div class="border-t pt-16 mt-16 dark:border-light-2">
+    <div class="giscus"></div>
+  </div>
 </Layout>
 
+<script
+  async
+  src="https://giscus.app/client.js"
+  data-repo="CaptainOfPhB/blog"
+  data-repo-id="R_kgDOK453LA"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOK453LM4CcVKf"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="en"
+  crossorigin="anonymous"></script>
+
+<!-- Watch the classname change of html element-->
 <script>
+  const rootEl = document.querySelector("html");
+
+  const attrObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.type !== "attributes" &&
+        mutation.attributeName !== "class"
+      ) {
+        return;
+      }
+      onThemeChange();
+    });
+  });
+
+  function observeClassChange() {
+    if (!rootEl) return;
+    attrObserver.observe(rootEl, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
   function sendMessage<T>(message: T) {
     const iframe = document.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
     if (!iframe) return;
-    iframe.contentWindow?.postMessage(
-      { giscus: message },
-      "https://giscus.app"
-    );
+    console.log("🚀 -> iframe:", iframe);
+    setTimeout(() => {
+      iframe.contentWindow?.postMessage(
+        { giscus: message },
+        "https://giscus.app"
+      );
+    }, 1000);
   }
 
-  // setTimeout(() => {
-  //   sendMessage({
-  //     setConfig: {
-  //       theme: "dark",
-  //     },
-  //   });
-  // }, 3000);
+  function onThemeChange() {
+    if (!rootEl) return;
+    const theme = rootEl.classList.contains("dark") ? "dark" : "light";
+    sendMessage({ setConfig: { theme } });
+  }
+
+  document.addEventListener("astro:page-swap", () => {
+    onThemeChange();
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    observeClassChange();
+    onThemeChange();
+
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
+    console.log("🚀 -> document.addEventListener -> iframe:", iframe);
+  });
 </script>
 
+<!-- Put the toc into the detail element -->
 <script>
   document.addEventListener("astro:page-load", () => {
     const tocHeader = document.querySelector("#table-of-contents");
