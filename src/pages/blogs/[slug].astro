@@ -128,13 +128,10 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
       "iframe.giscus-frame"
     );
     if (!iframe) return;
-    console.log("🚀 -> iframe:", iframe);
-    setTimeout(() => {
-      iframe.contentWindow?.postMessage(
-        { giscus: message },
-        "https://giscus.app"
-      );
-    }, 1000);
+    iframe.contentWindow?.postMessage(
+      { giscus: message },
+      "https://giscus.app"
+    );
   }
 
   function onThemeChange() {
@@ -154,7 +151,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     const iframe = document.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
-    console.log("🚀 -> document.addEventListener -> iframe:", iframe);
+    // console.log("🚀 -> document.addEventListener -> iframe:", iframe);
   });
 </script>
 
