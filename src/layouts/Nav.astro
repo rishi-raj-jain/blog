@@ -59,17 +59,10 @@ import { config } from "@/config/global";
     toggleThemeIcon(theme);
   });
 
-  document.addEventListener("astro:after-swap", () => {
-    setTheme(getInitialTheme());
-  });
-
   document.addEventListener("astro:page-load", () => {
     setActiveClass();
     addEventListenerForThemeIcon();
     toggleThemeIcon(getInitialTheme());
-    // We already call setTheme in astro:after-swap event
-    // But we need to call it again
-    // because the astro:after-swap event will not be triggered when the page is reload(user refresh page)
     setTheme(getInitialTheme());
   });
 
