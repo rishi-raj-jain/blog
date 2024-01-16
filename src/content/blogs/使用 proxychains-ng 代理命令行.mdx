@@ -1,0 +1,48 @@
+---
+title: 使用 proxychains-ng 代理命令行
+date: 2024-01-16 15:13:52
+pinned: true
+tags: [proxy, tricks]
+slug: use-proxychains-ng
+description: 使用 proxychains-ng 代理命令行
+---
+
+首先下载 [proxychains-ng](https://formulae.brew.sh/formula/proxychains-ng)，如果速度很慢或者失败了，可以网上搜一下设置 brew 镜像，下载速度就会快一点。或者使用[上一篇文章](/blogs/failed-to-connect-to-raw-githubusercontent)中的临时代理方法进行命令行翻墙。
+
+```bash
+brew install proxychains-ng
+```
+
+使用 proxychains-ng 进行代理，例如 `git clone`：
+
+```bash
+procychains4 git clone https://github.com/facebook/react.git
+```
+
+在使用了 proxychains-ng 后终端的输出中，在第一句 log 中标明了配置文件地址：
+
+```
+[proxychains] config file found: /usr/local/etc/proxychains.conf
+```
+
+我们可以编辑 `proxychains.conf` 文件，将代理配置加入 `[ProxyList]` 中。我们假设 socsk5 代理端口为 1234，http 代理端口为 4321。
+
+```toml
+[ProxyList] 
+socks5  127.0.0.1 1234
+http    127.0.0.1 4321
+```
+
+编辑终端的 rc 配置文件（如 `.zshrc`），添加 proxuchains4 的 alias：
+
+```bash
+alias pc="proxychains4"
+```
+
+退出保存，执行 `source .zshrc` 使别名生效。之后你就可以这样使用 procychains4:
+
+```bash
+pc git clone https://github.com/facebook/react.git
+```
+
+可以发现下载速度加快了很多。

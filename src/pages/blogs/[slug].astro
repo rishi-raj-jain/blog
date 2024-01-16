@@ -34,7 +34,7 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
       { label: title, href: `/blogs/${slug}` },
     ]}
   />
-  <H1 transitionName={slug} class="font-semibold">
+  <H1 transitionName={slug} class="font-semibold text-wrap break-words">
     {title}
   </H1>
   <p

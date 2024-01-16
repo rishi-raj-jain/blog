@@ -7,26 +7,26 @@ const props = { target: "_blank", class: "underline underline-offset-4" };
 
 <footer
   class:list={[
-    "absolute bottom-0 border-t-2 p-3 text-center",
+    "absolute bottom-0 border-t-2 py-5 text-center",
     "left-6 right-6",
     "lg:left-0 lg:right-0",
     "border-dark-2 text-light-3",
     "dark:border-light-2 dark:text-dark-3",
   ]}
 >
-  <p class="m-0.5 text-xs">
+  <p class="text-xs">
     The site is built with <a {...props} href="https://astro.build">Astro</a>,
     hosted on <a {...props} href="https://vercel.com/">Vercel</a>.
   </p>
-  <p class="m-0.5 text-xs">
+  <p class="m-2 text-xs">
     Thanks for
     <a {...props} href="https://tailwindcss.com">tailwindcss</a>,
-    <a {...props} href="https://github.com/satnaing/astro-paper">AstroPaper</a>,
+    <a {...props} href="https://github.com/satnaing/astro-paper">giscus</a>,
     <a {...props} href="https://github.com/lxgw/LxgwWenKai">LxgwWenKai</a>
      and
     <a {...props} href="https://monaspace.githubnext.com/">Monaspace</a>.
   </p>
-  <p class="m-0.5 text-xs">
+  <p class="text-xs">
     Released under the MIT License. Copyright &copy; {dayjs().format("YYYY")}
     {config.author.name}
   </p>

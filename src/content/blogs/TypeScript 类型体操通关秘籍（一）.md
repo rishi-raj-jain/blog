@@ -1,8 +1,6 @@
 ---
 title: "TypeScript 类型体操通关秘籍（一)"
 date: 2022-02-18T21:45:07+08:00
-pinned: true
-draft: false
 tags: ['TypeScript']
 slug: "juejin-book-7047524421182947366-1"
 description: 'TS 中的一些小技巧'
