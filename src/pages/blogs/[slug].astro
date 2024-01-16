@@ -128,7 +128,6 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
     const iframe = document.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
-    console.log(iframe?.classList.toString());
     if (!iframe) return;
     iframe.contentWindow?.postMessage(
       { giscus: message },
@@ -145,18 +144,13 @@ const { title, slug, tags, words, readingTime, lastModified } = frontmatter;
   document.addEventListener("astro:page-load", () => {
     observeClassChange();
     onThemeChange();
-
-    const iframe = document.querySelector<HTMLIFrameElement>(
-      "iframe.giscus-frame"
-    );
-    // console.log("🚀 -> document.addEventListener -> iframe:", iframe);
   });
 
   window.addEventListener("message", (event: MessageEvent) => {
     if (event.origin !== "https://giscus.app") return;
     if (!(typeof event.data === "object" && event.data.giscus)) return;
     // we treat the giscus has loaded here
-    sendMessage({ setConfig: { theme: "dark" } });
+    onThemeChange();
   });
 </script>
 
