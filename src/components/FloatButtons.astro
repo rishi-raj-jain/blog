@@ -94,7 +94,7 @@ const iconClasses = [
     window.tinyUrlOfCurrentPage = null;
     const partialTinyUrl = await createTinyUrl();
     if (!partialTinyUrl) return;
-    fetch(partialTinyUrl.tiny_url);
+    fetch(`https://${partialTinyUrl.domain}/${partialTinyUrl.alias}`);
     if (partialTinyUrl.alias) {
       const tinyUrl = await getTinyUrlInfo(partialTinyUrl.alias);
       window.tinyUrlOfCurrentPage = tinyUrl;
