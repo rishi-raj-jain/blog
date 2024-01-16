@@ -24,8 +24,6 @@ export default {
 			},
 			fontFamily: {
 				wenkai: ['LXGW WenKai Lite', ...defaultTheme.fontFamily.sans],
-				monaspace: ['Monaspace Neon', ...defaultTheme.fontFamily.sans],
-				handwrite: ['Architects Daughter', ...defaultTheme.fontFamily.sans],
 			}
 		},
 	},

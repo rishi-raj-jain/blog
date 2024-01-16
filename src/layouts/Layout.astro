@@ -1,11 +1,12 @@
 ---
 import "@/styles/global.css";
-import "@sweetalert2/theme-borderless/borderless.min.css";
+import { AstroFont } from "astro-font";
 import { config } from "@/config/global";
 import Footer from "@/layouts/Footer.astro";
 import Header from "@/layouts/Header.astro";
 import { ViewTransitions } from "astro:transitions";
-import FloatButtons from '@/components/FloatButtons.astro';
+import "@sweetalert2/theme-borderless/borderless.min.css";
+import FloatButtons from "@/components/FloatButtons.astro";
 
 interface Props {
   title?: string;
@@ -27,6 +28,41 @@ const { title } = Astro.props;
     />
     <meta name="generator" content={Astro.generator} />
     <title>{title || config.title}</title>
+    <AstroFont
+      config={[
+        {
+          src: [
+            {
+              style: "normal",
+              weight: "normal",
+              path: "https://cdn.jsdelivr.net/gh/githubnext/monaspace@v1.000/fonts/webfonts/MonaspaceNeon-Regular.woff",
+            },
+          ],
+          preload: false,
+          display: "swap",
+          name: "Monaspace Neon",
+          fallback: "sans-serif",
+          selector: ".font-monaspace",
+        },
+        {
+          src: [
+            {
+              style: "normal",
+              weight: "normal",
+              path: "https://cdn.jsdelivr.net/fontsource/fonts/architects-daughter@latest/latin-400-normal.woff2",
+              css: {
+                "unicode-range": `U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD`,
+              },
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "sans-serif",
+          name: "Architects Daughter",
+          selector: ".font-handwrite",
+        },
+      ]}
+    />
     <ViewTransitions />
   </head>
   <body
@@ -47,13 +83,12 @@ const { title } = Astro.props;
     <slot />
     <Footer />
     <FloatButtons />
+    <script>
+      import { inject } from "@vercel/analytics";
+      import { injectSpeedInsights } from "@vercel/speed-insights";
+
+      inject();
+      injectSpeedInsights({});
+    </script>
   </body>
 </html>
-
-<script>
-  import { inject } from '@vercel/analytics';
-  import { injectSpeedInsights } from '@vercel/speed-insights';
-
-  inject();
-  injectSpeedInsights({});
-</script>
