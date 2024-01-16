@@ -3,6 +3,7 @@
     "https://giscus.app"
   ],
   "originsRegex": [
+    "https://captainofphb.me",
     "http://localhost:[0-9]+"
   ],
   "defaultCommentOrder": "newest"
